@@ -8,6 +8,8 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
  
 public class SlickBasicGame extends BasicGame{
+	
+	Player player;
  
     Image plane = null;
     Image land = null;
@@ -23,6 +25,8 @@ public class SlickBasicGame extends BasicGame{
     @Override
     public void init(GameContainer gc)
 			throws SlickException {
+		player = new Player("foo", 100, 60, (float)Math.PI, 10);
+
         plane = new Image("res/test.png");
         land = new Image("res/trollface.png");
     }
@@ -63,6 +67,8 @@ public class SlickBasicGame extends BasicGame{
             scale -= (scale <= 1.0f) ? 0 : 0.1f;
             plane.setCenterOfRotation(plane.getWidth()/2.0f*scale, plane.getHeight()/2.0f*scale);
         }
+        
+        player.calculateNewPos(delta);
     }
  
     public void render(GameContainer gc, Graphics g)
@@ -70,7 +76,7 @@ public class SlickBasicGame extends BasicGame{
     {
         land.draw(0, 0);
  
-        plane.draw(x, y, scale);
+        plane.draw(player.getCenterX(), player.getCenterY(), scale);
  
     }
  
