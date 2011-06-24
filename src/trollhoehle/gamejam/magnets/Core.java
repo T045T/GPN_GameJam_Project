@@ -15,7 +15,7 @@ import org.newdawn.slick.geom.Circle;
 public class Core extends Entity {
 
     public Core(float screenWidth, float screenHeight) throws SlickException {
-	super(screenWidth / 2 - 25, screenHeight / 2 - 25, new Circle(screenWidth / 2 - 25, screenHeight / 2 - 25,
+	super(screenWidth / 2 , screenHeight / 2, new Circle(screenWidth / 2 - 25, screenHeight / 2 - 25,
 		50), new Image("res/images/core.png"));
     }
 

@@ -56,7 +56,7 @@ public class Management extends BasicGame {
     public void init(GameContainer gc) throws SlickException {
 	// TODO: init one player for demo:
 	this.players.add(new Player(200, 200, new Circle(200, 200, 20), new Image("res/images/magnet_inactive.png"), 5,
-		0.0001f, "Trollspieler", Input.KEY_W));
+		0.3f, "Trollspieler", Input.KEY_W));
 	this.entities.add(new Core(gc.getWidth(), gc.getHeight()));
     }
 
