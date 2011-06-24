@@ -79,7 +79,7 @@ public class MagnetoParticleEmitter implements ParticleEmitter {
 			float vy = (float) (dir[1] + (Math.random() - 0.5) * 0.1f);
 			*/
 			p.setOriented(true);
-			p.setVelocity(target.getX() + target.getRadius() - this.x,target.getY() + target.getRadius() - this.y ,speed);
+			p.setVelocity(target.getX() + target.getRadius() - this.x,target.getY() + target.getRadius() - this.y ,delta * speed);
 		}
 	}
 
@@ -109,7 +109,7 @@ public class MagnetoParticleEmitter implements ParticleEmitter {
 		float vy = (float) (dir[1] + (Math.random() - 0.5) * 0.1f);
 		p.setVelocity(vx,vy,1.1f);
 		*/
-		p.setVelocity(target.getX() + target.getRadius() - p.getX(), target.getY() + target.getRadius() - p.getY() ,speed + 1 / getTargetDistance(p.getX(), p.getY()));
+		p.setVelocity(target.getX() + target.getRadius() - p.getX(), target.getY() + target.getRadius() - p.getY() ,delta * speed + 1 / getTargetDistance(p.getX(), p.getY()));
 	}
 
 	
