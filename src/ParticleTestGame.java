@@ -37,8 +37,8 @@ public class ParticleTestGame extends BasicGame{
     	Image image = new Image("res/images/particleTest.png");
     	system = new ParticleSystem(image);
     	
-		player = new Player("foo", 200, 200, (float)Math.PI/2, 1f);
-		player2 = new Player("bar", 300, 200, (float) Math.PI/2, 0.01f);
+		player = new Player("foo", 200, 200, 30, 1f);
+		player2 = new Player("bar", 300, 200, 30, 0.01f);
 
     	system.addEmitter(new MagnetoParticleEmitter(player, player2));
 		

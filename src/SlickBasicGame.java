@@ -27,11 +27,11 @@ public class SlickBasicGame extends BasicGame{
  
     public void init(GameContainer gc)
 			throws SlickException {
-		player = new Player("foo", 200, 200, (float)Math.PI/2, 1f);
 
         plane = new Image("res/images/magnet_inactive.png");
         land = new Image("res/images/core.png");
         ring = new Image("res/images/testRing.png");
+        player = new Player("foo", 200, 200, plane.getWidth() / 2, 1f);
     }
 
     public void update(GameContainer gc, int delta)
@@ -77,7 +77,7 @@ public class SlickBasicGame extends BasicGame{
     {
         land.draw(300, 300);
  
-        plane.draw(player.getMinX() - plane.getWidth()/2, player.getMinY() - plane.getHeight() /2, scale);
+        plane.draw(player.getMinX(), player.getMinY(), scale);
  
         ring.draw(0, 0, (float) this.height/ring.getHeight());
     }
