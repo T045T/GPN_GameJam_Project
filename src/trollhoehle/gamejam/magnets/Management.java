@@ -47,7 +47,7 @@ public class Management extends BasicGame {
 	    e.getImg().draw(e.getX(), e.getY());
 	}
 
-	ring.getImg().draw(ring.getX(), ring.getY(), (float) ring.getImg().getHeight() / gc.getHeight());
+	ring.getImg().draw(ring.getX(), ring.getY(), (float) ((float) gc.getHeight() / (float) ring.getImg().getHeight()));
 
 	for (Player p : this.players) {
 	    p.getImg().draw(p.getX(), p.getY());
