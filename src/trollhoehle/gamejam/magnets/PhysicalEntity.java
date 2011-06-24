@@ -34,6 +34,17 @@ public abstract class PhysicalEntity extends Entity {
     public float getSpeed() {
 	return this.speed;
     }
+    
+    public float getPolarPhi() {
+    	float transX = this.getCenterX() - 360;	// HARDCODE
+    	float transY = 360 - this.getCenterY();	// HARDCODE
+    	return (float) Math.atan2(transY,transX);
+    }
+    public float getPolarRadius() {
+    	float transX = this.getCenterX() - 360;	// HARDCODE
+    	float transY = 360 - this.getCenterY();	// HARDCODE
+    	return (float) Math.sqrt(Math.pow(transX, 2) + Math.pow(transY, 2));
+    }
 
     /**
      * Sets the health of this PhysicalEntity to a given value.
@@ -72,10 +83,8 @@ public abstract class PhysicalEntity extends Entity {
      */
     private void calculateCircularMovement(float timePerFrame, float toCenterX, float toCenterY, float attract) {
 	// from Cartesian to Radial
-	float transX = this.getCenterX() - toCenterX;
-	float transY = toCenterY - this.getCenterY();
-	float phi = (float) Math.atan2(transY, transX);
-	float radius = (float) Math.sqrt(Math.pow(transX, 2) + Math.pow(transY, 2));
+	float phi = this.getPolarPhi();
+	float radius = this.getPolarRadius();
 
 	// calculate new values
 	phi += speed * timePerFrame / radius;

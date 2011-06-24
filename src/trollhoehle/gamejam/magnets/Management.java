@@ -56,7 +56,7 @@ public class Management extends BasicGame {
 		arg1.setColor(p.getColor());
 		arg1.drawString(""+p.getHp(), p.getX(), p.getY()-20);
 	    if (p.isInvincible()) {
-		p.getImg().draw(p.getX(), p.getY(), new Color(50, 50, 50));
+		p.getImg().draw(p.getX(), p.getY(), new Color(100, 100, 100));
 
 	    } else {
 		p.getImg().draw(p.getX(), p.getY());
