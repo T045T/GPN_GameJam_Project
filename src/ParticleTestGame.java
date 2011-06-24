@@ -37,8 +37,8 @@ public class ParticleTestGame extends BasicGame{
     	Image image = new Image("res/images/particleTest.png");
     	system = new ParticleSystem(image);
     	
-		player = new Player("foo", 100, 60, (float)Math.PI/2, 0.03f);
-		player2 = new Player("bar", 300, 50, (float) Math.PI/2, 0.01f);
+		player = new Player("foo", 200, 200, (float)Math.PI/2, 1f);
+		player2 = new Player("bar", 300, 200, (float) Math.PI/2, 0.01f);
 
     	system.addEmitter(new MagnetoParticleEmitter(player, player2));
 		
@@ -51,8 +51,8 @@ public class ParticleTestGame extends BasicGame{
     public void update(GameContainer gc, int delta)
 			throws SlickException
     {
-        Input input = gc.getInput();
- 
+    	Input input = gc.getInput();
+        float attract = 0;
         if(input.isKeyDown(Input.KEY_A))
         {
             plane.rotate(-0.2f * delta);
@@ -65,12 +65,7 @@ public class ParticleTestGame extends BasicGame{
  
         if(input.isKeyDown(Input.KEY_W))
         {
-            float hip = 0.4f * delta;
- 
-            float rotation = plane.getRotation();
- 
-            x+= hip * Math.sin(Math.toRadians(rotation));
-            y-= hip * Math.cos(Math.toRadians(rotation));
+            attract = 0.3f;
         }
  
         if(input.isKeyDown(Input.KEY_2))
@@ -84,8 +79,11 @@ public class ParticleTestGame extends BasicGame{
             plane.setCenterOfRotation(plane.getWidth()/2.0f*scale, plane.getHeight()/2.0f*scale);
         }
         
-        player.calculateNewPos(delta*0.01f, x/2, y/2);
-        player2.calculateNewPos(delta*0.01f, x/2, y/2);
+        ring.setCenterOfRotation(width/2,height/2);
+        ring.rotate(0.05f * delta);
+    
+        player.calculateNewPos(delta*0.2f, width/2, height/2,attract);
+        player2.calculateNewPos(delta*0.2f, width/2, height/2,attract);
         
         system.update(delta);
     }
@@ -95,8 +93,8 @@ public class ParticleTestGame extends BasicGame{
     {
         land.draw(300, 300);
  
-        plane.draw(player.getCenterX(), player.getCenterY(), scale);
-        playerDos.draw(player2.getCenterX(), player2.getCenterY(), scale);
+        plane.draw(player.getMinX() - plane.getWidth() / 2, player.getMinY() - plane.getHeight() /2, scale);
+        playerDos.draw(player2.getMinX() - playerDos.getWidth() / 2, player2.getMinY() - playerDos.getHeight() /2, scale);
         ring.draw(0, 0, (float) this.height/ring.getHeight());
         system.render();
     }
@@ -104,7 +102,7 @@ public class ParticleTestGame extends BasicGame{
     public static void main(String[] args)
 			throws SlickException
     {
-    	int width = 800;
+    	int width = 600;
     	int height = 600;
          AppGameContainer app =
 			new AppGameContainer( new ParticleTestGame(width, height) );
