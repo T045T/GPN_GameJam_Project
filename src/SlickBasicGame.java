@@ -72,7 +72,7 @@ public class SlickBasicGame extends BasicGame{
     public void render(GameContainer gc, Graphics g)
 			throws SlickException
     {
-        land.draw(0, 0);
+        land.draw(300, 300);
  
         plane.draw(player.getCenterX(), player.getCenterY(), scale);
  
