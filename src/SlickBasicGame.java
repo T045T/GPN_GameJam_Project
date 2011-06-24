@@ -1,8 +1,5 @@
-<<<<<<< HEAD
+
 import org.newdawn.slick.AppGameContainer;
-=======
- import org.newdawn.slick.AppGameContainer;
->>>>>>> 4259424bc0d65f4267535f019a9d511148c5e337
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -25,7 +22,6 @@ public class SlickBasicGame extends BasicGame{
         super("Slick2D Path2Glory - SlickBasicGame");
     }
  
-    @Override
     public void init(GameContainer gc)
 			throws SlickException {
 		player = new Player("foo", 100, 60, (float)Math.PI/2, 0.01f);
@@ -33,8 +29,7 @@ public class SlickBasicGame extends BasicGame{
         plane = new Image("res/images/magnet_inactive.png");
         land = new Image("res/images/core.png");
     }
- 
-    @Override
+
     public void update(GameContainer gc, int delta)
 			throws SlickException
     {
@@ -91,9 +86,5 @@ public class SlickBasicGame extends BasicGame{
  
          app.setDisplayMode(800, 600, false);
          app.start();
-<<<<<<< HEAD
     }
 }
-=======
-    }}
->>>>>>> 4259424bc0d65f4267535f019a9d511148c5e337
