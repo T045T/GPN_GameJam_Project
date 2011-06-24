@@ -1,3 +1,4 @@
+import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.geom.Circle;
 import org.newdawn.slick.util.FastTrig;
@@ -12,6 +13,7 @@ public class PhysicalEntity extends Circle {
 
     // "omega", the anglespeed
     private float speed;
+    private Image img;
 
     /**
      * Creates a new {@link PhysicalEntity} with given start-values. All given
@@ -26,9 +28,10 @@ public class PhysicalEntity extends Circle {
      * @param speed
      *            ololol
      */
-    public PhysicalEntity(float x, float y, float radius, float speed) {
+    public PhysicalEntity(float x, float y, float radius, float speed, Image img) {
 	super(x, y, radius);
 	this.speed = speed;
+	this.img = img;
     }
 
     public float getSpeed() {
@@ -46,7 +49,7 @@ public class PhysicalEntity extends Circle {
      * @param timePerFrame
      *            The given time per frame.
      */
-    public void calculateNewPos(float timePerFrame, float toCenterX, float toCenterY, float attract) {
+    public void update(float timePerFrame, float toCenterX, float toCenterY, float attract) {
 	// from Cartesian to Radial
 	float transX = getCenterX() - toCenterX;
 	float transY = toCenterY - getCenterY();

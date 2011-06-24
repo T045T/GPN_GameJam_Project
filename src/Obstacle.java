@@ -1,3 +1,5 @@
+import org.newdawn.slick.Image;
+
 public class Obstacle extends PhysicalEntity {
 
     /**
@@ -13,7 +15,7 @@ public class Obstacle extends PhysicalEntity {
      * @param speed
      *            The start-speed of this Obstacle.
      */
-    public Obstacle(float x, float y, float radius, float speed) {
-	super(x, y, radius, speed);
+    public Obstacle(float x, float y, float radius, float speed, Image img) {
+	super(x, y, radius, speed, img);
     }
 }

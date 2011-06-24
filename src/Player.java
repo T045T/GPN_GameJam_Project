@@ -1,3 +1,5 @@
+import org.newdawn.slick.Image;
+
 public class Player extends PhysicalEntity {
     private String name;
 
@@ -16,8 +18,8 @@ public class Player extends PhysicalEntity {
      * @param speed
      *            The start-speed of this Player.
      */
-    public Player(String name, float x, float y, float radius, float speed) {
-	super(x, y, radius, speed);
+    public Player(String name, float x, float y, float radius, float speed, Image img) {
+	super(x, y, radius, speed, img);
 	this.name = name;
     }
 
