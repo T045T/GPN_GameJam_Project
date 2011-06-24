@@ -65,14 +65,14 @@ public class SlickBasicGame extends BasicGame {
 			plane.setCenterOfRotation(plane.getWidth() / 2.0f * scale, plane.getHeight() / 2.0f * scale);
 		}
 
-		player.calculateNewPos(delta);
+		//player.calculateNewPos(delta);
 	}
 
 	public void render(GameContainer gc, Graphics g)
 			throws SlickException
     {
         land.draw(0, 0);
-        ring.draw(0, 0);
+        ring.draw(0, 0, (float) 0.5);
         plane.draw(player.getCenterX(), player.getCenterY(), scale);
  
     }
