@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import org.newdawn.slick.AppGameContainer;
+=======
+ import org.newdawn.slick.AppGameContainer;
+>>>>>>> 4259424bc0d65f4267535f019a9d511148c5e337
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -87,5 +91,9 @@ public class SlickBasicGame extends BasicGame{
  
          app.setDisplayMode(800, 600, false);
          app.start();
+<<<<<<< HEAD
     }
 }
+=======
+    }}
+>>>>>>> 4259424bc0d65f4267535f019a9d511148c5e337
