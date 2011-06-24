@@ -60,6 +60,9 @@ public class Management extends BasicGame {
 	this.ring = new Ring(gc.getWidth() / 2, gc.getHeight() / 2, gc.getWidth() / 2);
 	this.players.add(new Player(200, 200, new Circle(200, 200, 20), new Image("res/images/magnet_inactive.png"), 5,
 		0.15f, "Trollspieler", Input.KEY_W));
+	
+	gc.getInput().addKeyListener(new MagnetKeyListener(this.players));
+
 	this.entities.add(new Core(gc.getWidth(), gc.getHeight()));
     }
 
@@ -69,6 +72,7 @@ public class Management extends BasicGame {
 
 	for (Player p : this.players) {
 	    float attract = 0;
+	    
 
 	    if (input.isKeyDown(p.getButton())) {
 		attract = 0.3f;
