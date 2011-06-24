@@ -32,11 +32,11 @@ public abstract class Entity {
     }
 
     public float getX() {
-	return this.shape.getCenterX();
+	return this.shape.getX();
     }
 
     public float getY() {
-	return this.shape.getCenterY();
+	return this.shape.getY();
     }
 
     /**
