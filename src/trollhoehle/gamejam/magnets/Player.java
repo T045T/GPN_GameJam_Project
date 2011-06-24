@@ -1,5 +1,8 @@
 package trollhoehle.gamejam.magnets;
 
+import java.util.Random;
+
+import org.newdawn.slick.Color;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Shape;
 
@@ -19,12 +22,30 @@ public class Player extends PhysicalEntity {
     private float collisionTimer;
     private String name;
     private int button;
+    private Color color = new Color(255,255,255);
 
     public Player(float posX, float posY, Shape shape, Image img, int hp, float startSpeed, String name, int button) {
 	super(posX, posY, shape, img, hp, startSpeed);
 	this.collisionTimer = 0;
 	this.name = name;
 	this.button = button;
+	Random rand = new Random();
+
+	float r = rand.nextFloat();
+	float g = rand.nextFloat();
+	float b = rand.nextFloat();
+
+	this.color = new Color(r, g, b);
+	this.color.brighter(1000);
+    }
+    public Player(float posX, float posY, Shape shape, Image img, int hp, float startSpeed, String name, int button, Color color) {
+        this( posX,  posY,  shape,  img,  hp,  startSpeed,  name,  button);
+        this.color = color;
+
+    }
+    
+    public Color getColor() {
+    	return color;
     }
 
     public boolean isInvincible() {
