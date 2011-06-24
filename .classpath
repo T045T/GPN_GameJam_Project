@@ -14,5 +14,12 @@
 	<classpathentry exported="true" kind="lib" path="lwjgl-2.7.1/jar/lzma.jar"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry exported="true" kind="lib" path="lwjgl-2.7.1/jar/AppleJavaExtensions.jar"/>
+	<classpathentry exported="true" kind="lib" path="lwjgl-2.7.1/jar/slick-util.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/slick-examples.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/slick-sources.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/slick-util-src.zip"/>
+	<classpathentry exported="true" kind="lib" path="lib/slick-util.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/slick.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/tinylinepp.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
