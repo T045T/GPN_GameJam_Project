@@ -2,6 +2,7 @@ package trollhoehle.gamejam.magnets;
 
 import trollhoehle.gamejam.magnets.Player;
 
+import java.awt.Font;
 import java.util.ArrayList;
 
 import org.newdawn.slick.AppGameContainer;
@@ -12,6 +13,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.geom.Circle;
 
 public class Management extends BasicGame {
@@ -51,6 +53,8 @@ public class Management extends BasicGame {
 	this.ring.getImg().setCenterOfRotation(gc.getWidth() / 2, gc.getHeight() / 2);
 
 	for (Player p : this.players) {
+		arg1.setColor(p.getColor());
+		arg1.drawString(""+p.getHp(), p.getX(), p.getY()-20);
 	    if (p.isInvincible()) {
 		p.getImg().draw(p.getX(), p.getY(), new Color(50, 50, 50));
 

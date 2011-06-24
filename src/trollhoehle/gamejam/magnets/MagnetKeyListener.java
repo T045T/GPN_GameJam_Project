@@ -2,6 +2,7 @@ package trollhoehle.gamejam.magnets;
 
 import java.util.ArrayList;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.KeyListener;
@@ -60,7 +61,7 @@ public class MagnetKeyListener implements KeyListener {
 			this.players
 				.add(new Player(200, 200, new Circle(200, 200, 20), new Image(
 					"res/images/magnet_inactive.png"), LIFE_PER_PLAYER, 0.15f, "Trollspieler "
-					+ arg1, arg0));
+					+ arg1, arg0,new Color(255,255,0)));
 		    } catch (SlickException e) {
 
 		    }
