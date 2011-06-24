@@ -1,6 +1,7 @@
 
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -32,6 +33,8 @@ public class SlickBasicGame extends BasicGame{
         plane = new Image("res/images/magnet_inactive.png");
         land = new Image("res/images/core.png");
         ring = new Image("res/images/testRing.png");
+        
+        gc.getGraphics().setBackground(new Color(255,0,0));
     }
 
     public void update(GameContainer gc, int delta)
@@ -80,6 +83,7 @@ public class SlickBasicGame extends BasicGame{
         plane.draw(player.getMinX() - plane.getWidth()/2, player.getMinY() - plane.getHeight() /2, scale);
  
         ring.draw(0, 0, (float) this.height/ring.getHeight());
+        
     }
  
     public static void main(String[] args)
@@ -92,5 +96,6 @@ public class SlickBasicGame extends BasicGame{
  
          app.setDisplayMode(width, height, false);
          app.start();
+         
     }
 }
