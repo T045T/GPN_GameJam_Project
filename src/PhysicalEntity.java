@@ -56,6 +56,9 @@ public class PhysicalEntity extends Circle {
 
 	// calculate new values
 	phi += speed * timePerFrame;
+	if (radius > 300)
+		radius = 50;
+	radius += 0.3; 
 	//phi += 0.07;
 	/*
 	if (phi < -Math.PI) {

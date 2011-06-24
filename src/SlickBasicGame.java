@@ -70,7 +70,7 @@ public class SlickBasicGame extends BasicGame{
             plane.setCenterOfRotation(plane.getWidth()/2.0f*scale, plane.getHeight()/2.0f*scale);
         }
 
-        player.calculateNewPos(delta*0.1f, width/2, height/2);
+        player.calculateNewPos(delta*0.2f, width/2, height/2);
         ring.setCenterOfRotation(width/2,height/2);
         ring.rotate(0.05f * delta);
     }
