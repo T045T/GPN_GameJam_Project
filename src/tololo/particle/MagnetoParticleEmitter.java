@@ -25,43 +25,43 @@ public class MagnetoParticleEmitter implements ParticleEmitter {
 		System.out.println("Created MagnetoEmitter with source " + source);
 	}
 	
-	@Override
+	
 	public boolean completed() {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	@Override
+	
 	public Image getImage() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
+	
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
 		return true;
 	}
 
-	@Override
+	
 	public boolean isOriented() {
 		// TODO Auto-generated method stub
 		return true;
 	}
 
-	@Override
+	
 	public void resetState() {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
+	
 	public void setEnabled(boolean arg0) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
+	
 	public void update(ParticleSystem system, int delta) {
 		this.x = (int) (source.getX() + source.getRadius());
 		this.y = (int) (source.getY() + source.getRadius());
@@ -97,7 +97,7 @@ public class MagnetoParticleEmitter implements ParticleEmitter {
 		return (float) Math.sqrt((target.getX() + target.getRadius() - x) * (target.getX() + target.getRadius() - x)) + (target.getY() + target.getRadius() - y) * (target.getY() + target.getRadius() - y);
 	}
 	
-	@Override
+	
 	public void updateParticle(Particle p, int delta) {
 		if (getTargetDistance(p.getX(), p.getY()) <= target.getRadius()) {
 			p.kill();
@@ -112,19 +112,19 @@ public class MagnetoParticleEmitter implements ParticleEmitter {
 		p.setVelocity(target.getX() + target.getRadius() - p.getX(), target.getY() + target.getRadius() - p.getY() ,speed + 1 / getTargetDistance(p.getX(), p.getY()));
 	}
 
-	@Override
+	
 	public boolean useAdditive() {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	@Override
+	
 	public boolean usePoints(ParticleSystem arg0) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	@Override
+	
 	public void wrapUp() {
 		// TODO Auto-generated method stub
 		
