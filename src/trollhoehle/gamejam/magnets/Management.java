@@ -41,13 +41,12 @@ public class Management extends BasicGame {
 
     }
 
-    @Override
     public void render(GameContainer gc, Graphics arg1) throws SlickException {
 	for (Entity e : this.entities) {
 	    e.getImg().draw(e.getX(), e.getY());
 	}
 
-	ring.getImg().draw(ring.getX(), ring.getY(), (float) ring.getImg().getHeight() / gc.getHeight());
+	ring.getImg().draw(ring.getX(), ring.getY(), (float) ((float) gc.getHeight() / (float) ring.getImg().getHeight()));
 
 	for (Player p : this.players) {
 	    p.getImg().draw(p.getX(), p.getY());
@@ -61,6 +60,9 @@ public class Management extends BasicGame {
 	this.ring = new Ring(gc.getWidth() / 2, gc.getHeight() / 2, gc.getWidth() / 2);
 	this.players.add(new Player(200, 200, new Circle(200, 200, 20), new Image("res/images/magnet_inactive.png"), 5,
 		0.15f, "Trollspieler", Input.KEY_W));
+	
+	gc.getInput().addKeyListener(new MagnetKeyListener(this.players));
+
 	this.entities.add(new Core(gc.getWidth(), gc.getHeight()));
     }
 
@@ -71,6 +73,7 @@ public class Management extends BasicGame {
 	// PLAYERS
 	for (int i = 0; i < this.players.size(); i++) {
 	    float attract = 0;
+	    
 	    Player p = this.players.get(i);
 
 	    // KEY STROKES:
