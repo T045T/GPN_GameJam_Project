@@ -10,6 +10,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Circle;
 import org.newdawn.slick.particles.ParticleSystem;
 
+
 import tololo.particle.MagnetoParticleEmitter;
 
 public class SlickBasicGame extends BasicGame{
