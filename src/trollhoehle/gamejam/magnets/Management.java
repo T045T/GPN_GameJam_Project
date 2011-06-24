@@ -2,6 +2,7 @@ package trollhoehle.gamejam.magnets;
 
 import trollhoehle.gamejam.magnets.Player;
 
+import java.awt.Font;
 import java.util.ArrayList;
 
 import org.newdawn.slick.AppGameContainer;
@@ -12,6 +13,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.geom.Circle;
 
 public class Management extends BasicGame {
@@ -44,13 +46,15 @@ public class Management extends BasicGame {
 
     public void render(GameContainer gc, Graphics arg1) throws SlickException {
 	for (Entity e : this.entities) {
-	    e.getImg().draw(e.getX(), e.getY());
+	    e.getImg().draw(e.getX(), e.getY(), (float) ((float) e.getImg().getWidth()/(float) e.getShape().getWidth()));
 	}
 
 	ring.getImg().draw(0, 0, (float) ((float) gc.getHeight() / (float) ring.getImg().getHeight()));
 	this.ring.getImg().setCenterOfRotation(gc.getWidth() / 2, gc.getHeight() / 2);
 
 	for (Player p : this.players) {
+		arg1.setColor(p.getColor());
+		arg1.drawString(""+p.getHp(), p.getX(), p.getY()-20);
 	    if (p.isInvincible()) {
 		p.getImg().draw(p.getX(), p.getY(), new Color(100, 100, 100));
 
@@ -75,6 +79,8 @@ public class Management extends BasicGame {
     @Override
     public void update(GameContainer gc, int delta) throws SlickException {
 	Input input = gc.getInput();
+
+	Obstacle[] result;
 
 	this.ring.getImg().rotate(0.05f * delta);
 
@@ -126,7 +132,13 @@ public class Management extends BasicGame {
 	    Entity e = this.entities.get(i);
 
 	    // NEW POSITION
-	    e.update(delta, gc.getWidth() / 2, gc.getHeight() / 2, 0);
+	    result = e.update(delta, gc.getWidth() / 2, gc.getHeight() / 2, 0);
+
+	    if (result != null) {
+		for (Entity newE : result) {
+		    this.entities.add(newE);
+		}
+	    }
 
 	    // COLLISION
 	    for (int j = i + 1; j < this.entities.size(); j++) {

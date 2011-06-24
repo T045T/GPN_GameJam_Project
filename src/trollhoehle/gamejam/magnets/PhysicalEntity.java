@@ -63,9 +63,6 @@ public abstract class PhysicalEntity extends Entity {
 	// calculate new position
 	this.calculateCircularMovement(timePerFrame, toCenterX, toCenterY, attract);
 
-	// draw image to a new position
-	this.getImg().draw(this.getCenterX(), this.getCenterY());
-
 	return null;
     }
 
