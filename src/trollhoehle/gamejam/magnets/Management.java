@@ -46,8 +46,10 @@ public class Management extends BasicGame {
 	    e.getImg().draw(e.getX(), e.getY());
 	}
 
+
 	ring.getImg().draw(0, 0, (float) ((float) gc.getHeight() / (float) ring.getImg().getHeight()));
 	this.ring.getImg().setCenterOfRotation(gc.getWidth()/2, gc.getHeight()/2);
+
 
 	for (Player p : this.players) {
 	    p.getImg().draw(p.getX(), p.getY());
@@ -58,12 +60,12 @@ public class Management extends BasicGame {
     @Override
     public void init(GameContainer gc) throws SlickException {
 	// TODO: init one player for demo:
-    
+
 	this.ring = new Ring(gc.getWidth() / 2, gc.getHeight() / 2, gc.getWidth() / 2);
-	
+
 	this.players.add(new Player(200, 200, new Circle(200, 200, 20), new Image("res/images/magnet_inactive.png"), 5,
 		0.15f, "Trollspieler", Input.KEY_W));
-	
+
 	gc.getInput().addKeyListener(new MagnetKeyListener(this.players));
 
 	this.entities.add(new Core(gc.getWidth(), gc.getHeight()));
@@ -74,12 +76,11 @@ public class Management extends BasicGame {
 	Input input = gc.getInput();
 
 	this.ring.getImg().rotate(0.05f * delta);
-	
 
 	// PLAYERS
 	for (int i = 0; i < this.players.size(); i++) {
 	    float attract = 0;
-	    
+
 	    Player p = this.players.get(i);
 
 	    // KEY STROKES:
@@ -97,22 +98,28 @@ public class Management extends BasicGame {
 
 	    // COLLISION
 	    for (int j = i + 1; j < this.players.size(); j++) {
-		if (p.getShape().intersects(this.players.get(j).getShape())) {
+		Player pc = this.players.get(j);
+		if (p.getShape().intersects(pc.getShape())) {
 		    System.out.println("Collision between player " + i + " and player " + j);
-		    // TODO: real collision
+		    p.collision(pc);
+		    pc.collision(p);
 		}
 
 	    }
 
 	    for (int j = 0; j < this.entities.size(); j++) {
-		if (p.getShape().intersects(this.entities.get(j).getShape())) {
+		Entity ec = this.entities.get(j);
+		if (p.getShape().intersects(ec.getShape())) {
 		    System.out.println("Collision between player " + i + " and entity " + j);
-		    // TODO: real collision
+		    p.collision(ec);
+		    ec.collision(p);
 		}
 	    }
 
-	    if (p.getShape().intersects(this.ring.getShape())) {
+	    if (!p.getShape().intersects(this.ring.getShape())) {
 		System.out.println("Collision between player " + i + " and ring.");
+		p.collision(this.ring);
+		this.ring.collision(p);
 	    }
 	}
 
@@ -125,16 +132,36 @@ public class Management extends BasicGame {
 
 	    // COLLISION
 	    for (int j = i + 1; j < this.entities.size(); j++) {
-		if (e.getShape().intersects(this.entities.get(j).getShape())) {
+		Entity ec = this.entities.get(j);
+
+		if (e.getShape().intersects(ec.getShape())) {
 		    System.out.println("Collision between entity " + i + " and entity " + j);
-		    // TODO: real collision
+		    e.collision(ec);
+		    ec.collision(e);
 		}
 	    }
 
-	    e.getShape().intersects(this.ring.getShape());
+	    if (!e.getShape().intersects(this.ring.getShape())) {
+		e.collision(ring);
+		ring.collision(e);
+	    }
+	}
+
+	// KILL DEAD PHYSICAL ENTITIES
+	for (int i = 0; i < this.players.size(); i++) {
+	    if (this.players.get(i).getHp() <= 0) {
+		this.players.remove(i);
+	    }
+	}
+	for (int i = 0; i < this.entities.size(); i++) {
+	    if (this.entities.get(i) instanceof PhysicalEntity) {
+		if (((PhysicalEntity) this.entities.get(i)).getHp() <= 0) {
+		    this.entities.remove(i);
+		}
+	    }
 	}
 
 	// TODO: particles(?)
     }
-    
+
 }

@@ -41,4 +41,10 @@ public class Core extends Entity {
 
     }
 
+    @Override
+    public Obstacle[] collision(Entity collider) {
+	// TODO Auto-generated method stub
+	return null;
+    }
+
 }

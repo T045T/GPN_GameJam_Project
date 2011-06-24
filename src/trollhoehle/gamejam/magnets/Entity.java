@@ -131,4 +131,12 @@ public abstract class Entity {
      */
     public abstract Obstacle[] update(float timePerFrame, float toCenterX, float toCenterY, float attract);
 
+    /**
+     * This method is called when this entity collides with another Entity.
+     * 
+     * @param collider
+     *            The "other" Entity.
+     * @return
+     */
+    public abstract Obstacle[] collision(Entity collider);
 }
