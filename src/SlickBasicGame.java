@@ -52,8 +52,10 @@ public class SlickBasicGame extends BasicGame{
         if(input.isKeyDown(Input.KEY_W))
         {
             attract = 0.3f;
+            plane = new Image("res/images/magnet_active.png");
         }
- 
+        else
+        	plane = new Image("res/images/magnet_inactive.png");
         if(input.isKeyDown(Input.KEY_2))
         {
             scale += (scale >= 5.0f) ? 0 : 0.1f;

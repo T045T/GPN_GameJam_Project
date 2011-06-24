@@ -48,8 +48,6 @@ public class PhysicalEntity extends Circle {
      */
     public void calculateNewPos(float timePerFrame, float toCenterX, float toCenterY, float attract) {
 	// from Cartesian to Radial
-    System.out.println(toCenterX);
-	System.out.println(toCenterY);
 	float transX = getCenterX() - toCenterX;
 	float transY = toCenterY - getCenterY();
 	float phi = (float) Math.atan2(transY, transX);
@@ -75,7 +73,6 @@ public class PhysicalEntity extends Circle {
 	
 	this.setCenterX((float)( toCenterX + Math.cos(phi) * radius));
 	this.setCenterY((float)( toCenterY - Math.sin(phi) * radius));
-	System.out.println(getCenterX());
     }
 
 }
