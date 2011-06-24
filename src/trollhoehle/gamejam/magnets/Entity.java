@@ -16,6 +16,15 @@ public abstract class Entity {
     private Image img;
     private Shape shape;
 
+    /**
+     * 
+     * @param posX
+     *            Upper-left-x-pos
+     * @param posY
+     *            Upper-left-y-pos
+     * @param shape
+     * @param img
+     */
     public Entity(float posX, float posY, Shape shape, Image img) {
 	this.shape = shape;
 	this.img = img;
@@ -29,6 +38,14 @@ public abstract class Entity {
 
     public Shape getShape() {
 	return shape;
+    }
+
+    public float getCenterX() {
+	return this.shape.getCenterX();
+    }
+
+    public float getCenterY() {
+	return this.shape.getCenterY();
     }
 
     public float getX() {
@@ -58,22 +75,38 @@ public abstract class Entity {
     }
 
     /**
-     * Sets this Entitie's x-position to a given value. Also updates this
-     * Entitie's Shape's position.
+     * Sets this Entitie's center-x-position.
      * 
      * @param x
      *            The given value.
+     */
+    public void setCenterX(float x) {
+	this.shape.setCenterX(x);
+    }
+
+    /**
+     * Sets this Entitie's center-y-position.
+     * 
+     * @param y
+     *            The given value.
+     */
+    public void setCenterY(float y) {
+	this.shape.setCenterY(y);
+    }
+
+    /**
+     * Sets this Entitie's upper-left-x-position
+     * 
+     * @param x
      */
     public void setX(float x) {
 	this.shape.setX(x);
     }
 
     /**
-     * Sets this Entitie's y-position to a given value. Also updates this
-     * Entitie's Shape's position.
+     * Sets this Entitie's upper-left-y-position
      * 
      * @param y
-     *            The given value.
      */
     public void setY(float y) {
 	this.shape.setY(y);

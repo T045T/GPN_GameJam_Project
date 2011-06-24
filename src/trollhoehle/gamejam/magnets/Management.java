@@ -16,9 +16,10 @@ import org.newdawn.slick.geom.Circle;
 public class Management extends BasicGame {
 
     /**
-     * All Entities but the Players
+     * All Entities but the Players and the ring
      */
     private ArrayList<Entity> entities;
+    private Ring ring;
     private ArrayList<Player> players;
 
     public Management() {
@@ -41,10 +42,12 @@ public class Management extends BasicGame {
     }
 
     @Override
-    public void render(GameContainer arg0, Graphics arg1) throws SlickException {
+    public void render(GameContainer gc, Graphics arg1) throws SlickException {
 	for (Entity e : this.entities) {
 	    e.getImg().draw(e.getX(), e.getY());
 	}
+
+	ring.getImg().draw(ring.getX(), ring.getY(), (float) ring.getImg().getHeight() / gc.getHeight());
 
 	for (Player p : this.players) {
 	    p.getImg().draw(p.getX(), p.getY());
@@ -55,6 +58,7 @@ public class Management extends BasicGame {
     @Override
     public void init(GameContainer gc) throws SlickException {
 	// TODO: init one player for demo:
+	this.ring = new Ring(gc.getWidth() / 2, gc.getHeight() / 2, gc.getWidth() / 2);
 	this.players.add(new Player(200, 200, new Circle(200, 200, 20), new Image("res/images/magnet_inactive.png"), 5,
 		0.3f, "Trollspieler", Input.KEY_W));
 	this.entities.add(new Core(gc.getWidth(), gc.getHeight()));

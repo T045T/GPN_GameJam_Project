@@ -45,7 +45,7 @@ public abstract class PhysicalEntity extends Entity {
 	this.calculateCircularMovement(timePerFrame, toCenterX, toCenterY, attract);
 
 	// draw image to a new position
-	this.getImg().draw(this.getX(), this.getY());
+	this.getImg().draw(this.getCenterX(), this.getCenterY());
 
 	return null;
     }
@@ -67,8 +67,8 @@ public abstract class PhysicalEntity extends Entity {
      */
     private void calculateCircularMovement(float timePerFrame, float toCenterX, float toCenterY, float attract) {
 	// from Cartesian to Radial
-	float transX = this.getX() - toCenterX;
-	float transY = toCenterY - this.getY();
+	float transX = this.getCenterX() - toCenterX;
+	float transY = toCenterY - this.getCenterY();
 	float phi = (float) Math.atan2(transY, transX);
 	float radius = (float) Math.sqrt(Math.pow(transX, 2) + Math.pow(transY, 2));
 
@@ -85,7 +85,7 @@ public abstract class PhysicalEntity extends Entity {
 
 	// back from Radial to Cartesian and save
 
-	this.setX((float) (toCenterX + Math.cos(phi) * radius));
-	this.setY((float) (toCenterY - Math.sin(phi) * radius));
+	this.setCenterX((float) (toCenterX + Math.cos(phi) * radius));
+	this.setCenterY((float) (toCenterY - Math.sin(phi) * radius));
     }
 }
