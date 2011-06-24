@@ -12,8 +12,8 @@ import org.newdawn.slick.geom.Circle;
  */
 public class Ring extends Entity {
 
-    public Ring(float posX, float posY, float radius) throws SlickException {
-	super(posX, posY, new Circle(posX, posY, radius - 85), new Image("res/images/testRing.png"));
+    public Ring(float posX, float posY, float radius, float speedMultiplier) throws SlickException {
+	super(posX, posY, new Circle(posX, posY, radius - 85), new Image("res/images/testRing.png"), speedMultiplier);
     }
 
     public Obstacle[] update(float timePerFrame, float toCenterX, float toCenterY, float attract) {

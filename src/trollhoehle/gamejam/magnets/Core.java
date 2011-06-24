@@ -24,7 +24,7 @@ public class Core extends Entity {
 
     public Core(float screenWidth, float screenHeight) throws SlickException {
 	super(screenWidth / 2, screenHeight / 2, new Circle(screenWidth / 2 - 25, screenHeight / 2 - 25, 50),
-		new Image("res/images/core.png"));
+		new Image("res/images/core.png"), 0);
 	this.timeBetweenSpawns = 3000f;
 	this.timeFromLastSpawn = 0f;
 	this.spawnAngle = 0;
@@ -54,14 +54,14 @@ public class Core extends Entity {
 		spawnedObstacles[0] = new Obstacle((float) (this.getShape().getCenterX() + 80 + this.getRadius()
 			* Math.cos(this.spawnAngle + Math.PI * 2 / 3)),
 			(float) (this.getShape().getCenterY() + 80 + this.getRadius()
-				* Math.sin(this.spawnAngle + Math.PI * 2 / 3)), 1, OBSTACLE_SPEED);
+				* Math.sin(this.spawnAngle + Math.PI * 2 / 3)), 1, OBSTACLE_SPEED, 0.08f);
 		spawnedObstacles[1] = new Obstacle((float) (this.getShape().getCenterX() + 80 + this.getRadius()
 			* Math.cos(this.spawnAngle + Math.PI * 4 / 3)),
 			(float) (this.getShape().getCenterY() + 80 + this.getRadius()
-				* Math.sin(this.spawnAngle + Math.PI * 4 / 3)), 1, OBSTACLE_SPEED);
+				* Math.sin(this.spawnAngle + Math.PI * 4 / 3)), 1, OBSTACLE_SPEED, 0.08f);
 		spawnedObstacles[2] = new Obstacle((float) (this.getShape().getCenterX() + 80 + this.getRadius()
 			* Math.cos(this.spawnAngle)), (float) (this.getShape().getCenterY() + 80 + this.getRadius()
-			* Math.sin(this.spawnAngle)), 1, OBSTACLE_SPEED);
+			* Math.sin(this.spawnAngle)), 1, OBSTACLE_SPEED, 0.08f);
 	    } catch (SlickException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();

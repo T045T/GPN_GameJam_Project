@@ -24,11 +24,13 @@ public class Management extends BasicGame {
     private ArrayList<Entity> entities;
     private Ring ring;
     private ArrayList<Player> players;
+    private float currentSpeed;
 
     public Management() {
 	super("Fucking magnets - How do they work?");
 	this.entities = new ArrayList<Entity>();
 	this.players = new ArrayList<Player>();
+	this.currentSpeed = 0.08f;
     }
 
     /**
@@ -69,7 +71,7 @@ public class Management extends BasicGame {
     @Override
     public void init(GameContainer gc) throws SlickException {
 
-	this.ring = new Ring(gc.getWidth() / 2, gc.getHeight() / 2, gc.getWidth() / 2);
+	this.ring = new Ring(gc.getWidth() / 2, gc.getHeight() / 2, gc.getWidth() / 2, 0.08f);
 
 	gc.getInput().addKeyListener(new MagnetKeyListener(this.players));
 

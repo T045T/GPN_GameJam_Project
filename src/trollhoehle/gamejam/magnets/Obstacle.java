@@ -14,8 +14,8 @@ import org.newdawn.slick.geom.Shape;
  */
 public class Obstacle extends PhysicalEntity {
 
-    public Obstacle(float posX, float posY, int hp, float startSpeed) throws SlickException {
-	super(posX, posY, new Circle(posX, posY, 20), new Image("res/images/trollface.png"), hp, startSpeed);
+    public Obstacle(float posX, float posY, int hp, float startSpeed, float speedMultiplier) throws SlickException {
+	super(posX, posY, new Circle(posX, posY, 20), new Image("res/images/trollface.png"), hp, startSpeed, speedMultiplier);
     }
     
     
