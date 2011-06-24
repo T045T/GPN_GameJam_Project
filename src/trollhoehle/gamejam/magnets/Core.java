@@ -14,9 +14,17 @@ import org.newdawn.slick.geom.Circle;
  */
 public class Core extends Entity {
 
+    /**
+     * ms-value.
+     */
+    private float timeBetweenSpawns;
+    private float timeFromLastSpawn;
+
     public Core(float screenWidth, float screenHeight) throws SlickException {
-	super(screenWidth / 2 , screenHeight / 2, new Circle(screenWidth / 2 - 25, screenHeight / 2 - 25,
-		50), new Image("res/images/core.png"));
+	super(screenWidth / 2, screenHeight / 2, new Circle(screenWidth / 2 - 25, screenHeight / 2 - 25, 50),
+		new Image("res/images/core.png"));
+	this.timeBetweenSpawns = 3000f;
+	this.timeFromLastSpawn = 0f;
     }
 
     @Override
@@ -31,8 +39,14 @@ public class Core extends Entity {
     }
 
     private Obstacle[] spawn(float timePerFrame) {
-	Obstacle spawnedObstacles[] = new Obstacle[0];
-	// TODO maaaaaake 'em spaaaaaawn!
+	Obstacle spawnedObstacles[] = null;
+	if (this.timeFromLastSpawn >= this.timeBetweenSpawns) {
+	    //spawnedObstacles = new Obstacle[3];
+	    //TODO: ADD THREE OBSTACLES!!!
+	    this.timeFromLastSpawn = 0f;
+	} else {
+	    this.timeFromLastSpawn += timePerFrame;
+	}
 	return spawnedObstacles;
     }
 
