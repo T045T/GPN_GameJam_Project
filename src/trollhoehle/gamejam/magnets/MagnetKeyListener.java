@@ -12,8 +12,14 @@ public class MagnetKeyListener implements KeyListener {
 
 	private ArrayList<Player> players;
 
+	int counter = 0;
+
+	int pressedButton = 0;
+
 	public MagnetKeyListener(ArrayList<Player> players) {
 		this.players = players;
+		this.counter = 0;
+		this.pressedButton = 0;
 	}
 
 	public void inputEnded() {
@@ -47,11 +53,23 @@ public class MagnetKeyListener implements KeyListener {
 		}
 
 		if (!found) {
-			try {
-				this.players.add(new Player(200, 200, new Circle(200, 200, 20), new Image(
-						"res/images/magnet_inactive.png"), 5, 0.15f, "Trollspieler " + arg1, arg0));
-			} catch (SlickException e) {
+			if (this.pressedButton == arg0) {
+				if (counter > 0) {
+					counter = 0;
 
+					try {
+						this.players.add(new Player(200, 200, new Circle(200, 200, 20), new Image(
+								"res/images/magnet_inactive.png"), 5, 0.15f, "Trollspieler " + arg1, arg0));
+					} catch (SlickException e) {
+
+					}
+				} else {
+					this.pressedButton = arg0;
+					counter++;
+				}
+			} else {
+				this.pressedButton = arg0;
+				counter++;
 			}
 		}
 	}
