@@ -8,7 +8,7 @@
 	<classpathentry exported="true" kind="lib" path="lwjgl-2.7.1/jar/lwjgl-debug.jar"/>
 	<classpathentry exported="true" kind="lib" path="lwjgl-2.7.1/jar/lwjgl.jar">
 		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/Cakemix/GameJam/lwjgl-2.7.1/native/windows"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="GPN_GameJam_Project/lwjgl-2.7.1/native/linux"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry exported="true" kind="lib" path="lwjgl-2.7.1/jar/lzma.jar"/>
