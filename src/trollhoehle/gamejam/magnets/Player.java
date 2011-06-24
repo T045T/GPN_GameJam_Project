@@ -24,6 +24,16 @@ public class Player extends PhysicalEntity {
 	this.button = button;
     }
 
+    public boolean isInvincible() {
+	boolean isInvincible = true;
+
+	if (collisionTimer <= 0) {
+	    isInvincible = false;
+	}
+
+	return isInvincible;
+    }
+
     public String getName() {
 	return this.name;
     }

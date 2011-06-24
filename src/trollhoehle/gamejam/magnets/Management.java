@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -46,13 +47,17 @@ public class Management extends BasicGame {
 	    e.getImg().draw(e.getX(), e.getY());
 	}
 
-
 	ring.getImg().draw(0, 0, (float) ((float) gc.getHeight() / (float) ring.getImg().getHeight()));
-	this.ring.getImg().setCenterOfRotation(gc.getWidth()/2, gc.getHeight()/2);
-
+	this.ring.getImg().setCenterOfRotation(gc.getWidth() / 2, gc.getHeight() / 2);
 
 	for (Player p : this.players) {
-	    p.getImg().draw(p.getX(), p.getY());
+	    if (p.isInvincible()) {
+		p.getImg().draw(p.getX(), p.getY(), new Color(50, 50, 50));
+
+	    } else {
+		p.getImg().draw(p.getX(), p.getY());
+
+	    }
 	}
 
     }
