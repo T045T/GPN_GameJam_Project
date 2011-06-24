@@ -99,5 +99,9 @@ public class Player extends PhysicalEntity {
 
 	return null;
     }
+    
+    public void setCollisionTimer(float time) {
+    	this.collisionTimer = time;
+    }
 
 }
