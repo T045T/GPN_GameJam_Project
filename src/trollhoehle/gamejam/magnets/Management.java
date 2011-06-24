@@ -41,7 +41,6 @@ public class Management extends BasicGame {
 
     }
 
-    @Override
     public void render(GameContainer gc, Graphics arg1) throws SlickException {
 	for (Entity e : this.entities) {
 	    e.getImg().draw(e.getX(), e.getY());
@@ -63,6 +62,9 @@ public class Management extends BasicGame {
 	this.ring.getImg().setCenterOfRotation(gc.getWidth()/2, gc.getHeight()/2);
 	this.players.add(new Player(200, 200, new Circle(200, 200, 20), new Image("res/images/magnet_inactive.png"), 5,
 		0.15f, "Trollspieler", Input.KEY_W));
+	
+	gc.getInput().addKeyListener(new MagnetKeyListener(this.players));
+
 	this.entities.add(new Core(gc.getWidth(), gc.getHeight()));
     }
 
@@ -72,9 +74,14 @@ public class Management extends BasicGame {
 
 	this.ring.getImg().rotate(0.05f * delta);
 	
-	for (Player p : this.players) {
-	    float attract = 0;
 
+	// PLAYERS
+	for (int i = 0; i < this.players.size(); i++) {
+	    float attract = 0;
+	    
+	    Player p = this.players.get(i);
+
+	    // KEY STROKES:
 	    if (input.isKeyDown(p.getButton())) {
 		attract = 0.3f;
 		p.setImg(new Image("res/images/magnet_active.png"));
@@ -84,12 +91,48 @@ public class Management extends BasicGame {
 		// TODO: Particles!
 	    }
 
+	    // NEW POSITION
 	    p.update(delta, gc.getWidth() / 2, gc.getHeight() / 2, attract);
+
+	    // COLLISION
+	    for (int j = i + 1; j < this.players.size(); j++) {
+		if (p.getShape().intersects(this.players.get(j).getShape())) {
+		    System.out.println("Collision between player " + i + " and player " + j);
+		    // TODO: real collision
+		}
+
+	    }
+
+	    for (int j = 0; j < this.entities.size(); j++) {
+		if (p.getShape().intersects(this.entities.get(j).getShape())) {
+		    System.out.println("Collision between player " + i + " and entity " + j);
+		    // TODO: real collision
+		}
+	    }
+
+	    if (p.getShape().intersects(this.ring.getShape())) {
+		System.out.println("Collision between player " + i + " and ring.");
+	    }
 	}
 
-	for (Entity e : this.entities) {
+	// OTHER ENTITES
+	for (int i = 0; i < this.entities.size(); i++) {
+	    Entity e = this.entities.get(i);
+
+	    // NEW POSITION
 	    e.update(delta, gc.getWidth() / 2, gc.getHeight() / 2, 0);
+
+	    // COLLISION
+	    for (int j = i + 1; j < this.entities.size(); j++) {
+		if (e.getShape().intersects(this.entities.get(j).getShape())) {
+		    System.out.println("Collision between entity " + i + " and entity " + j);
+		    // TODO: real collision
+		}
+	    }
+
+	    e.getShape().intersects(this.ring.getShape());
 	}
+
 	// TODO: particles(?)
     }
     

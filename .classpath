@@ -8,7 +8,7 @@
 	<classpathentry exported="true" kind="lib" path="lwjgl-2.7.1/jar/lwjgl-debug.jar"/>
 	<classpathentry exported="true" kind="lib" path="lwjgl-2.7.1/jar/lwjgl.jar">
 		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="GPN_GameJam_Project/lwjgl-2.7.1/native/linux"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/Cakemix/GameJam/lwjgl-2.7.1/native/windows"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry exported="true" kind="lib" path="lwjgl-2.7.1/jar/lzma.jar"/>
@@ -18,7 +18,11 @@
 	<classpathentry exported="true" kind="lib" path="lib/slick-examples.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/slick-sources.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/slick-util-src.zip"/>
-	<classpathentry exported="true" kind="lib" path="lib/slick-util.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/slick-util.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/Cakemix/GameJam/lwjgl-2.7.1/native"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry exported="true" kind="lib" path="lib/slick.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/tinylinepp.jar"/>
 	<classpathentry kind="output" path="bin"/>
