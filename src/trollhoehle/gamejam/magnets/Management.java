@@ -58,12 +58,8 @@ public class Management extends BasicGame {
 
     @Override
     public void init(GameContainer gc) throws SlickException {
-	// TODO: init one player for demo:
 
 	this.ring = new Ring(gc.getWidth() / 2, gc.getHeight() / 2, gc.getWidth() / 2);
-
-	this.players.add(new Player(200, 200, new Circle(200, 200, 20), new Image("res/images/magnet_inactive.png"), 5,
-		0.15f, "Trollspieler", Input.KEY_W));
 
 	gc.getInput().addKeyListener(new MagnetKeyListener(this.players));
 
@@ -99,7 +95,6 @@ public class Management extends BasicGame {
 	    for (int j = i + 1; j < this.players.size(); j++) {
 		Player pc = this.players.get(j);
 		if (p.getShape().intersects(pc.getShape())) {
-		    System.out.println("Collision between player " + i + " and player " + j);
 		    p.collision(pc);
 		    pc.collision(p);
 		}
@@ -109,14 +104,12 @@ public class Management extends BasicGame {
 	    for (int j = 0; j < this.entities.size(); j++) {
 		Entity ec = this.entities.get(j);
 		if (p.getShape().intersects(ec.getShape())) {
-		    System.out.println("Collision between player " + i + " and entity " + j);
 		    p.collision(ec);
 		    ec.collision(p);
 		}
 	    }
 
 	    if (!p.getShape().intersects(this.ring.getShape())) {
-		System.out.println("Collision between player " + i + " and ring.");
 		p.collision(this.ring);
 		this.ring.collision(p);
 	    }
@@ -134,7 +127,6 @@ public class Management extends BasicGame {
 		Entity ec = this.entities.get(j);
 
 		if (e.getShape().intersects(ec.getShape())) {
-		    System.out.println("Collision between entity " + i + " and entity " + j);
 		    e.collision(ec);
 		    ec.collision(e);
 		}
