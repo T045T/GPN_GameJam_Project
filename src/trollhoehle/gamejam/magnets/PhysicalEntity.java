@@ -23,6 +23,19 @@ public abstract class PhysicalEntity extends Entity {
     }
 
     /**
+     * Returns the amount of health this PhysicalEntity has.
+     * 
+     * @return
+     */
+    public int getHp() {
+	return this.hp;
+    }
+
+    public float getSpeed() {
+	return this.speed;
+    }
+
+    /**
      * Sets the health of this PhysicalEntity to a given value.
      * 
      * @param hp
@@ -31,13 +44,8 @@ public abstract class PhysicalEntity extends Entity {
 	this.hp = hp;
     }
 
-    /**
-     * Returns the amount of health this PhysicalEntity has.
-     * 
-     * @return
-     */
-    public int getHp() {
-	return this.hp;
+    public void setSpeed(float speed) {
+	this.speed = speed;
     }
 
     public Obstacle[] update(float timePerFrame, float toCenterX, float toCenterY, float attract) {
@@ -81,7 +89,7 @@ public abstract class PhysicalEntity extends Entity {
 	// TODO: ---till here
 
 	// constantly increase radius, except attract != 0
-	radius += (0.05 - attract) * timePerFrame;
+	radius += (0.08 - attract) * timePerFrame;
 
 	// back from Radial to Cartesian and save
 
