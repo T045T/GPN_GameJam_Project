@@ -1,19 +1,19 @@
 public class Obstacle extends PhysicalEntity {
 
     /**
-     * Creates a new {@link Obstacle} with given start-values. All given values
+     * Creates a new {@link Player} with given start-values. All given values
      * are considered to be radial-values.
      * 
-     * @param distanceRadius
-     *            troll
-     * @param sizeRadius
-     *            ol
-     * @param phi
-     *            ranging from 0 to 2*pi
+     * @param x
+     *            The Cartesian x-position of this Obstacle.
+     * @param y
+     *            The Cartesian y-position of this Obstacle.
+     * @param radius
+     *            The radius of this Obstacle.
      * @param speed
-     *            ololol
+     *            The start-speed of this Obstacle.
      */
-    public Obstacle(float distanceRadius, float sizeRadius, float phi, float speed) {
-	super(distanceRadius, sizeRadius, phi, speed);
+    public Obstacle(float x, float y, float radius, float speed) {
+	super(x, y, radius, speed);
     }
 }

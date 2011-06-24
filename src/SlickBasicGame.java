@@ -69,9 +69,9 @@ public class SlickBasicGame extends BasicGame{
             scale -= (scale <= 1.0f) ? 0 : 0.1f;
             plane.setCenterOfRotation(plane.getWidth()/2.0f*scale, plane.getHeight()/2.0f*scale);
         }
-        
+
         player.calculateNewPos(delta*0.01f, width/2, height/2);
-        //ring.setCenterOfRotation(ring.getWidth()/2, ring.getHeight()/2);
+        ring.setCenterOfRotation(width/2,height/2);
         ring.rotate(0.2f * delta);
     }
  

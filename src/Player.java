@@ -7,17 +7,17 @@ public class Player extends PhysicalEntity {
      * 
      * @param name
      *            A String defining the name of this player.
-     * @param distanceRadius
-     *            troll
-     * @param sizeRadius
-     *            ol
-     * @param phi
-     *            ranging from 0 to 2*pi
+     * @param x
+     *            The Cartesian x-position of this player.
+     * @param y
+     *            The Cartesian y-position of this player.
+     * @param radius
+     *            The radius of this Player.
      * @param speed
-     *            ololol
+     *            The start-speed of this Player.
      */
-    public Player(String name, float distanceRadius, float sizeRadius, float phi, float speed) {
-	super(distanceRadius, sizeRadius, phi, speed);
+    public Player(String name, float x, float y, float radius, float speed) {
+	super(x, y, radius, speed);
 	this.name = name;
     }
 

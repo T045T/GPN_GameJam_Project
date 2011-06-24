@@ -47,13 +47,16 @@ public class PhysicalEntity extends Circle {
      */
     public void calculateNewPos(float timePerFrame, float toCenterX, float toCenterY) {
 	// from Cartesian to Radial
+    System.out.println(toCenterX);
+	System.out.println(toCenterY);
 	float transX = getCenterX() - toCenterX;
 	float transY = toCenterY - getCenterY();
 	float phi = (float) Math.atan2(transY, transX);
 	float radius = (float) Math.sqrt(Math.pow(transX, 2) + Math.pow(transY, 2));
 
 	// calculate new values
-	phi += speed * timePerFrame;
+	//phi += speed * timePerFrame;
+	phi += 0.07;
 	/*
 	if (phi < -Math.PI) {
 	    phi = (float) (Math.PI + phi);
