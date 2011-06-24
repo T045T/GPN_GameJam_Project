@@ -82,7 +82,7 @@ public class Management extends BasicGame {
 
 	Obstacle[] result;
 
-	this.ring.getImg().rotate(0.05f * delta);
+	this.ring.getImg().rotate(-0.02f * delta);
 
 	// PLAYERS
 	for (int i = 0; i < this.players.size(); i++) {
