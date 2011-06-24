@@ -54,10 +54,23 @@ public class Player extends PhysicalEntity {
     }
 
     public Obstacle[] collision(Entity collider) {
-	if (this.collisionTimer <= 0) {
+	
+    	// calculate relative angle between colliding parties
+		float phi_relativ = (float) (Math.atan2(this.getCenterY() -collider.getCenterY(), collider.getCenterX() - this.getCenterX()));
+		// bounce off into the opposite direction exept when hitting the Ring 
+		if(!(collider instanceof Ring))
+			phi_relativ += Math.PI;
+		// do the bounce!
+		this.setCenterX((float) (this.getCenterX() + Math.cos(phi_relativ) * 20));
+		this.setCenterY((float) (this.getCenterY() - Math.sin(phi_relativ) * 20));
+		
+	if (collider instanceof Player) {
+	}
+	else{
+		if (this.collisionTimer <= 0) {
 	    this.setHp(this.getHp() - 1);
-	    System.out.println("Player lost hp!"); // TODO: debug-thingy removen
 	    this.collisionTimer = TIME_BETWEEN_COLLISIONS;
+		}
 	}
 
 	return null;

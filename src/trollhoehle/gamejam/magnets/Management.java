@@ -52,7 +52,7 @@ public class Management extends BasicGame {
 
 	for (Player p : this.players) {
 	    if (p.isInvincible()) {
-		p.getImg().draw(p.getX(), p.getY(), new Color(50, 50, 50));
+		p.getImg().draw(p.getX(), p.getY(), new Color(100, 100, 100));
 
 	    } else {
 		p.getImg().draw(p.getX(), p.getY());
