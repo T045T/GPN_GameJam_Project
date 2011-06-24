@@ -104,9 +104,9 @@ public class SlickBasicGame extends BasicGame{
 		plane.draw(player.getMinX(), player.getMinY(), scale);
 
 		ring.draw(0, 0, (float) this.height/ring.getHeight());
-		if (drawParticles) {
+		//if (drawParticles) {
 			system.render();
-		}
+		//}
 	}
 
 	public static void main(String[] args)
