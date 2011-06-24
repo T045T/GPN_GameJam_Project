@@ -58,7 +58,9 @@ public class Management extends BasicGame {
     @Override
     public void init(GameContainer gc) throws SlickException {
 	// TODO: init one player for demo:
+    	
 	this.ring = new Ring(gc.getWidth() / 2, gc.getHeight() / 2, gc.getWidth() / 2);
+	this.ring.getImg().setCenterOfRotation(gc.getWidth()/2, gc.getHeight()/2);
 	this.players.add(new Player(200, 200, new Circle(200, 200, 20), new Image("res/images/magnet_inactive.png"), 5,
 		0.15f, "Trollspieler", Input.KEY_W));
 	this.entities.add(new Core(gc.getWidth(), gc.getHeight()));
@@ -68,6 +70,8 @@ public class Management extends BasicGame {
     public void update(GameContainer gc, int delta) throws SlickException {
 	Input input = gc.getInput();
 
+	this.ring.getImg().rotate(0.05f * delta);
+	
 	for (Player p : this.players) {
 	    float attract = 0;
 
@@ -88,4 +92,5 @@ public class Management extends BasicGame {
 	}
 	// TODO: particles(?)
     }
+    
 }
