@@ -1,3 +1,4 @@
+import org.newdawn.slick.Input;
 import org.newdawn.slick.geom.Circle;
 import org.newdawn.slick.util.FastTrig;
 
@@ -37,7 +38,7 @@ public class PhysicalEntity extends Circle {
     public void setSpeed(float speed) {
 	this.speed = speed;
     }
-
+    
     /**
      * Calculates the new position of this {@link PhysicalEntity} in relation to
      * the time this frame took.
@@ -45,7 +46,7 @@ public class PhysicalEntity extends Circle {
      * @param timePerFrame
      *            The given time per frame.
      */
-    public void calculateNewPos(float timePerFrame, float toCenterX, float toCenterY) {
+    public void calculateNewPos(float timePerFrame, float toCenterX, float toCenterY, float attract) {
 	// from Cartesian to Radial
     System.out.println(toCenterX);
 	System.out.println(toCenterY);
@@ -53,12 +54,15 @@ public class PhysicalEntity extends Circle {
 	float transY = toCenterY - getCenterY();
 	float phi = (float) Math.atan2(transY, transX);
 	float radius = (float) Math.sqrt(Math.pow(transX, 2) + Math.pow(transY, 2));
-
+	
 	// calculate new values
-	phi += speed * timePerFrame;
+	phi += speed * timePerFrame / radius;
 	if (radius > 300)
 		radius = 50;
-	radius += 0.1 * timePerFrame; 
+	if (attract == 0)
+		radius += 0.1 * timePerFrame; 
+	else
+		radius -= attract *timePerFrame;
 	//phi += 0.07;
 	/*
 	if (phi < -Math.PI) {

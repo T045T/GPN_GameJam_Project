@@ -27,7 +27,7 @@ public class SlickBasicGame extends BasicGame{
  
     public void init(GameContainer gc)
 			throws SlickException {
-		player = new Player("foo", 200, 200, (float)Math.PI/2, 0.01f);
+		player = new Player("foo", 200, 200, (float)Math.PI/2, 1f);
 
         plane = new Image("res/images/magnet_inactive.png");
         land = new Image("res/images/core.png");
@@ -38,7 +38,7 @@ public class SlickBasicGame extends BasicGame{
 			throws SlickException
     {
         Input input = gc.getInput();
- 
+        float attract = 0;
         if(input.isKeyDown(Input.KEY_A))
         {
             plane.rotate(-0.2f * delta);
@@ -51,12 +51,7 @@ public class SlickBasicGame extends BasicGame{
  
         if(input.isKeyDown(Input.KEY_W))
         {
-            float hip = 0.4f * delta;
- 
-            float rotation = plane.getRotation();
- 
-            //x+= hip * Math.sin(Math.toRadians(rotation));
-            //y-= hip * Math.cos(Math.toRadians(rotation));
+            attract = 0.3f;
         }
  
         if(input.isKeyDown(Input.KEY_2))
@@ -70,7 +65,7 @@ public class SlickBasicGame extends BasicGame{
             plane.setCenterOfRotation(plane.getWidth()/2.0f*scale, plane.getHeight()/2.0f*scale);
         }
 
-        player.calculateNewPos(delta*0.2f, width/2, height/2);
+        player.calculateNewPos(delta*0.2f, width/2, height/2,attract);
         ring.setCenterOfRotation(width/2,height/2);
         ring.rotate(0.05f * delta);
     }
