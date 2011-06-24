@@ -13,7 +13,7 @@ public class MagnetoParticleEmitter implements ParticleEmitter {
 	private int particleRate = 100;
 	private int timer;
 	private float size = 15;
-	private float speed = 0.002f;
+	private float speed = 0.008f;
 	private Circle source;
 	private Circle target;
 	
@@ -68,8 +68,8 @@ public class MagnetoParticleEmitter implements ParticleEmitter {
 		timer -= delta;
 		if (timer <= 0) {
 			timer = particleRate;
-			Particle p = system.getNewParticle(this, 2000);
-			p.setColor(0.8f, 0.8f, 1, 0.5f);
+			Particle p = system.getNewParticle(this, 1500);
+			p.setColor(1, 1, 1, 0.8f);
 			//Spawn particles at random location inside source circle
 			p.setPosition((float) (x + (Math.random() - 0.5) * 2 * source.getRadius()), (float) (y + (Math.random() - 0.5) * 2 * source.getRadius()));
 			p.setSize(size);
@@ -109,7 +109,7 @@ public class MagnetoParticleEmitter implements ParticleEmitter {
 		float vy = (float) (dir[1] + (Math.random() - 0.5) * 0.1f);
 		p.setVelocity(vx,vy,1.1f);
 		*/
-		p.setVelocity(target.getX() + target.getRadius() - p.getX(), target.getY() + target.getRadius() - p.getY() ,speed);
+		p.setVelocity(target.getX() + target.getRadius() - p.getX(), target.getY() + target.getRadius() - p.getY() ,speed + 1 / getTargetDistance(p.getX(), p.getY()));
 	}
 
 	@Override
