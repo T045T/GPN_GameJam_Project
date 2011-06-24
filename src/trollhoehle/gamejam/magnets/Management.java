@@ -41,7 +41,6 @@ public class Management extends BasicGame {
 
     }
 
-    @Override
     public void render(GameContainer gc, Graphics arg1) throws SlickException {
 	for (Entity e : this.entities) {
 	    e.getImg().draw(e.getX(), e.getY());
