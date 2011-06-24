@@ -17,10 +17,10 @@ public abstract class Entity {
     private Shape shape;
 
     public Entity(float posX, float posY, Shape shape, Image img) {
-	this.shape.setCenterX(posX);
-	this.shape.setCenterY(posY);
 	this.shape = shape;
 	this.img = img;
+	this.shape.setCenterX(posX);
+	this.shape.setCenterY(posY);
     }
 
     public Image getImg() {
@@ -96,10 +96,6 @@ public abstract class Entity {
      * @return An array of Obstacles which has been spawned in this Entitie's
      *         update-method.
      */
-    public Obstacle[] update(float timePerFrame, float toCenterX, float toCenterY, float attract) {
-	this.getImg().draw(this.getX(), this.getY());
-
-	return null;
-    }
+    public abstract Obstacle[] update(float timePerFrame, float toCenterX, float toCenterY, float attract);
 
 }

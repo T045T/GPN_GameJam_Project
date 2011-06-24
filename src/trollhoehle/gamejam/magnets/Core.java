@@ -1,7 +1,8 @@
 package trollhoehle.gamejam.magnets;
 
 import org.newdawn.slick.Image;
-import org.newdawn.slick.geom.Shape;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Circle;
 
 /**
  * The core is the .. core! .. in the middle of the game. This class has extra
@@ -13,9 +14,9 @@ import org.newdawn.slick.geom.Shape;
  */
 public class Core extends Entity {
 
-    public Core(float posX, float posY, Shape shape, Image img) {
-	// TODO: directly create shape and image here (maybe)
-	super(posX, posY, shape, img);
+    public Core(float screenWidth, float screenHeight) throws SlickException {
+	super(screenWidth / 2 - 50, screenHeight / 2 - 50, new Circle(screenWidth / 2 - 50, screenHeight / 2 - 50,
+		50), new Image("res/images/core.png"));
     }
 
     @Override
@@ -25,8 +26,6 @@ public class Core extends Entity {
 	this.pulse(timePerFrame);
 
 	spawnedObstacles = this.spawn(timePerFrame);
-
-	super.update(timePerFrame, toCenterX, toCenterY, attract);
 
 	return spawnedObstacles;
     }

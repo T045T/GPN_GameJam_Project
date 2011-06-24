@@ -19,7 +19,6 @@ public class Ring extends Entity {
 
     public Obstacle[] update(float timePerFrame, float toCenterX, float toCenterY, float attract) {
 	// TODO: ROTAAAAAAATEEEEEEEEEEE! :O
-	super.update(timePerFrame, toCenterX, toCenterY, attract);
 	return null;
     }
 
