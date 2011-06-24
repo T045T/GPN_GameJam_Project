@@ -76,6 +76,8 @@ public class Management extends BasicGame {
     public void update(GameContainer gc, int delta) throws SlickException {
 	Input input = gc.getInput();
 
+	Obstacle[] result;
+
 	this.ring.getImg().rotate(0.05f * delta);
 
 	// PLAYERS
@@ -126,7 +128,13 @@ public class Management extends BasicGame {
 	    Entity e = this.entities.get(i);
 
 	    // NEW POSITION
-	    e.update(delta, gc.getWidth() / 2, gc.getHeight() / 2, 0);
+	    result = e.update(delta, gc.getWidth() / 2, gc.getHeight() / 2, 0);
+
+	    if (result != null) {
+		for (Entity newE : result) {
+		    this.entities.add(newE);
+		}
+	    }
 
 	    // COLLISION
 	    for (int j = i + 1; j < this.entities.size(); j++) {

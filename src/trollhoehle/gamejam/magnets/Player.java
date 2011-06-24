@@ -12,7 +12,10 @@ import org.newdawn.slick.geom.Shape;
  */
 public class Player extends PhysicalEntity {
 
-    private static final float TIME_BETWEEN_COLLISIONS = 3.0f;
+    /**
+     * ms-value
+     */
+    private static final float TIME_BETWEEN_COLLISIONS = 1500f;
     private float collisionTimer;
     private String name;
     private int button;
@@ -48,7 +51,7 @@ public class Player extends PhysicalEntity {
 
     public Obstacle[] update(float timePerFrame, float toCenterX, float toCenterY, float attract) {
 	if (this.collisionTimer > 0) {
-	    this.collisionTimer -= 1 / timePerFrame;
+	    this.collisionTimer -= timePerFrame;
 	}
 	return super.update(timePerFrame, toCenterX, toCenterY, attract);
     }
@@ -56,7 +59,6 @@ public class Player extends PhysicalEntity {
     public Obstacle[] collision(Entity collider) {
 	if (this.collisionTimer <= 0) {
 	    this.setHp(this.getHp() - 1);
-	    System.out.println("Player lost hp!"); // TODO: debug-thingy removen
 	    this.collisionTimer = TIME_BETWEEN_COLLISIONS;
 	}
 
