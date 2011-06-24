@@ -68,9 +68,12 @@ public class Management extends BasicGame {
     public void update(GameContainer gc, int delta) throws SlickException {
 	Input input = gc.getInput();
 
-	for (Player p : this.players) {
+	// PLAYERS
+	for (int i = 0; i < this.players.size(); i++) {
 	    float attract = 0;
+	    Player p = this.players.get(i);
 
+	    // KEY STROKES:
 	    if (input.isKeyDown(p.getButton())) {
 		attract = 0.3f;
 		p.setImg(new Image("res/images/magnet_active.png"));
@@ -80,12 +83,48 @@ public class Management extends BasicGame {
 		// TODO: Particles!
 	    }
 
+	    // NEW POSITION
 	    p.update(delta, gc.getWidth() / 2, gc.getHeight() / 2, attract);
+
+	    // COLLISION
+	    for (int j = i + 1; j < this.players.size(); j++) {
+		if (p.getShape().intersects(this.players.get(j).getShape())) {
+		    System.out.println("Collision between player " + i + " and player " + j);
+		    // TODO: real collision
+		}
+
+	    }
+
+	    for (int j = 0; j < this.entities.size(); j++) {
+		if (p.getShape().intersects(this.entities.get(j).getShape())) {
+		    System.out.println("Collision between player " + i + " and entity " + j);
+		    // TODO: real collision
+		}
+	    }
+
+	    if (p.getShape().intersects(this.ring.getShape())) {
+		System.out.println("Collision between player " + i + " and ring.");
+	    }
 	}
 
-	for (Entity e : this.entities) {
+	// OTHER ENTITES
+	for (int i = 0; i < this.entities.size(); i++) {
+	    Entity e = this.entities.get(i);
+
+	    // NEW POSITION
 	    e.update(delta, gc.getWidth() / 2, gc.getHeight() / 2, 0);
+
+	    // COLLISION
+	    for (int j = i + 1; j < this.entities.size(); j++) {
+		if (e.getShape().intersects(this.entities.get(j).getShape())) {
+		    System.out.println("Collision between entity " + i + " and entity " + j);
+		    // TODO: real collision
+		}
+	    }
+
+	    e.getShape().intersects(this.ring.getShape());
 	}
+
 	// TODO: particles(?)
     }
 }
