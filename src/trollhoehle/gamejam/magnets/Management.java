@@ -43,7 +43,7 @@ public class Management extends BasicGame {
 
     public void render(GameContainer gc, Graphics arg1) throws SlickException {
 	for (Entity e : this.entities) {
-	    e.getImg().draw(e.getX(), e.getY());
+	    e.getImg().draw(e.getX(), e.getY(), (float) ((float) e.getImg().getWidth()/(float) e.getShape().getWidth()));
 	}
 
 
