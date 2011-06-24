@@ -44,7 +44,6 @@ public class MagnetKeyListener implements KeyListener {
 
 	public void keyPressed(int arg0, char arg1) {
 		// TODO Auto-generated method stub
-		System.out.println("Key " + arg0);
 		boolean found = false;
 		for (Player player : this.players) {
 			if (player.getButton() == arg0) {
