@@ -65,8 +65,10 @@ public class PhysicalEntity extends Circle {
 	}*/
 
 	// back from Radial to Cartesian and save
+	
 	this.setCenterX((float)( toCenterX + Math.cos(phi) * radius));
 	this.setCenterY((float)( toCenterY - Math.sin(phi) * radius));
+	System.out.println(getCenterX());
     }
 
 }
