@@ -73,6 +73,8 @@ public class SlickBasicGame extends BasicGame{
         }
         
         player.calculateNewPos(delta*0.01f, x/2, y/2);
+        //ring.setCenterOfRotation(ring.getWidth()/2, ring.getHeight()/2);
+        ring.rotate(0.2f * delta);
     }
  
     public void render(GameContainer gc, Graphics g)
@@ -88,7 +90,7 @@ public class SlickBasicGame extends BasicGame{
     public static void main(String[] args)
 			throws SlickException
     {
-    	int width = 800;
+    	int width = 600;
     	int height = 600;
          AppGameContainer app =
 			new AppGameContainer( new SlickBasicGame(width, height) );
