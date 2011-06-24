@@ -13,13 +13,18 @@ public class SlickBasicGame extends BasicGame{
  
     Image plane = null;
     Image land = null;
+    Image ring = null;
     float x = 400;
     float y = 300;
     float scale = 1;
+    int width;
+    int height;
  
-    public SlickBasicGame()
+    public SlickBasicGame(int width, int height)
     {
         super("Slick2D Path2Glory - SlickBasicGame");
+        this.width = width;
+        this.height = height;
     }
  
     public void init(GameContainer gc)
@@ -28,6 +33,7 @@ public class SlickBasicGame extends BasicGame{
 
         plane = new Image("res/images/magnet_inactive.png");
         land = new Image("res/images/core.png");
+        ring = new Image("res/images/testRing.png");
     }
 
     public void update(GameContainer gc, int delta)
@@ -76,15 +82,18 @@ public class SlickBasicGame extends BasicGame{
  
         plane.draw(player.getCenterX(), player.getCenterY(), scale);
  
+        ring.draw(0, 0, (float) this.height/ring.getHeight());
     }
  
     public static void main(String[] args)
 			throws SlickException
     {
+    	int width = 800;
+    	int height = 600;
          AppGameContainer app =
-			new AppGameContainer( new SlickBasicGame() );
+			new AppGameContainer( new SlickBasicGame(width, height) );
  
-         app.setDisplayMode(800, 600, false);
+         app.setDisplayMode(width, height, false);
          app.start();
     }
 }
