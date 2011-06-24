@@ -89,7 +89,7 @@ public abstract class PhysicalEntity extends Entity {
 	// TODO: ---till here
 
 	// constantly increase radius, except attract != 0
-	radius += (0.05 - attract) * timePerFrame;
+	radius += (0.08 - attract) * timePerFrame;
 
 	// back from Radial to Cartesian and save
 
