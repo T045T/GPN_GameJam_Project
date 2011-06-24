@@ -83,11 +83,6 @@ public abstract class PhysicalEntity extends Entity {
 	// calculate new values
 	phi += speed * timePerFrame / radius;
 
-	// TODO: Just demo-code!
-	if (radius > 300)
-	    radius = 50;
-	// TODO: ---till here
-
 	// constantly increase radius, except attract != 0
 	radius += (0.08 - attract) * timePerFrame;
 
@@ -95,5 +90,14 @@ public abstract class PhysicalEntity extends Entity {
 
 	this.setCenterX((float) (toCenterX + Math.cos(phi) * radius));
 	this.setCenterY((float) (toCenterY - Math.sin(phi) * radius));
+    }
+
+    /**
+     * Every PhysicalEntity will lose 1 hp when colliding with another Entity.
+     */
+    public Obstacle[] collision(Entity collider) {
+	this.setHp(this.getHp() - 1);
+
+	return null;
     }
 }

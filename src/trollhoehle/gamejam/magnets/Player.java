@@ -28,8 +28,9 @@ public class Player extends PhysicalEntity {
     public void setName(String name) {
 	this.name = name;
     }
-    
+
     public int getButton() {
-    	return this.button;
+	return this.button;
     }
+
 }

@@ -22,4 +22,10 @@ public class Ring extends Entity {
 	return null;
     }
 
+    @Override
+    public Obstacle[] collision(Entity collider) {
+	// TODO Auto-generated method stub
+	return null;
+    }
+
 }
