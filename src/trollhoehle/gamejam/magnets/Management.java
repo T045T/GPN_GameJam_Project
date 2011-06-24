@@ -22,6 +22,7 @@ public class Management extends BasicGame {
      * All Entities but the Players and the ring
      */
     private ArrayList<Entity> entities;
+    private Core core;
     private Ring ring;
     private ArrayList<Player> players;
 
@@ -46,15 +47,24 @@ public class Management extends BasicGame {
 
     public void render(GameContainer gc, Graphics arg1) throws SlickException {
 	for (Entity e : this.entities) {
-	    e.getImg().draw(e.getX(), e.getY(), (float) ((float) e.getShape().getWidth()/(float) e.getImg().getWidth()));
+	    e.getImg().draw(e.getX(), e.getY(),
+		    (float) ((float) e.getShape().getWidth() / (float) e.getImg().getWidth()));
 	}
 
 	ring.getImg().draw(0, 0, (float) ((float) gc.getHeight() / (float) ring.getImg().getHeight()));
 	this.ring.getImg().setCenterOfRotation(gc.getWidth() / 2, gc.getHeight() / 2);
 
+	core.getImg().draw(core.getX(), core.getY(),
+		(float) ((float) core.getShape().getWidth() / (float) core.getImg().getWidth()));
+
+	for (ObstacleSpawner os : this.core.getObstacleSpawner()) {
+	    os.getImg().draw(os.getX(), os.getY(),
+		    (float) ((float) os.getShape().getWidth() / (float) os.getImg().getWidth()));
+	}
+
 	for (Player p : this.players) {
-		arg1.setColor(p.getColor());
-		arg1.drawString(""+p.getHp(), p.getX(), p.getY()-20);
+	    arg1.setColor(p.getColor());
+	    arg1.drawString("" + p.getHp(), p.getX(), p.getY() - 20);
 	    if (p.isInvincible()) {
 		p.getImg().draw(p.getX(), p.getY(), new Color(100, 100, 100));
 
@@ -70,10 +80,8 @@ public class Management extends BasicGame {
     public void init(GameContainer gc) throws SlickException {
 
 	this.ring = new Ring(gc.getWidth() / 2, gc.getHeight() / 2, gc.getWidth() / 2);
-
+	this.core = new Core(gc.getWidth(), gc.getHeight());
 	gc.getInput().addKeyListener(new MagnetKeyListener(this.players));
-
-	this.entities.add(new Core(gc.getWidth(), gc.getHeight()));
     }
 
     @Override
@@ -83,6 +91,18 @@ public class Management extends BasicGame {
 	Obstacle[] result;
 
 	this.ring.getImg().rotate(-0.02f * delta);
+
+	// OBSTACLE SPAWNER
+	for (ObstacleSpawner os : this.core.getObstacleSpawner()) {
+	    result = os.update(delta, gc.getWidth() / 2, gc.getHeight() / 2, 0.08f);
+
+	    if (result != null) {
+		for (Entity er : result) {
+		    this.entities.add(er);
+		}
+
+	    }
+	}
 
 	// PLAYERS
 	for (int i = 0; i < this.players.size(); i++) {
@@ -125,6 +145,11 @@ public class Management extends BasicGame {
 		p.collision(this.ring);
 		this.ring.collision(p);
 	    }
+
+	    if (p.getShape().intersects(this.core.getShape())) {
+		p.collision(this.core);
+		this.core.collision(p);
+	    }
 	}
 
 	// OTHER ENTITES
@@ -153,6 +178,10 @@ public class Management extends BasicGame {
 	    if (!e.getShape().intersects(this.ring.getShape())) {
 		e.collision(ring);
 		ring.collision(e);
+	    }
+	    if (e.getShape().intersects(this.core.getShape())) {
+		e.collision(core);
+		core.collision(e);
 	    }
 	}
 
