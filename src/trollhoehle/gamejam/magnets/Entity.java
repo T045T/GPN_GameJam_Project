@@ -3,6 +3,14 @@ package trollhoehle.gamejam.magnets;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Shape;
 
+/**
+ * Basic class for everything that can be displayed. Has an {@link Image} which
+ * will be drawn every time the update()-method is called. Also supports
+ * collision with help of this Entitie's {@link Shape}.
+ * 
+ * @author Cakemix
+ * 
+ */
 public abstract class Entity {
 
     private Image img;
@@ -29,6 +37,16 @@ public abstract class Entity {
 
     public float getY() {
 	return this.shape.getCenterY();
+    }
+
+    /**
+     * Returns the radius of the circle completely encloses this Entitie's
+     * Shape.
+     * 
+     * @return
+     */
+    public float getRadius() {
+	return this.shape.getBoundingCircleRadius();
     }
 
     public void setImg(Image img) {
@@ -78,6 +96,10 @@ public abstract class Entity {
      * @return An array of Obstacles which has been spawned in this Entitie's
      *         update-method.
      */
-    public abstract Obstacle[] update(float timePerFrame, float toCenterX, float toCenterY, float attract);
+    public Obstacle[] update(float timePerFrame, float toCenterX, float toCenterY, float attract) {
+	this.getImg().draw(this.getX(), this.getY());
+
+	return null;
+    }
 
 }

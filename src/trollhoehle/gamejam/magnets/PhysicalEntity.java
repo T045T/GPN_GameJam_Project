@@ -3,6 +3,14 @@ package trollhoehle.gamejam.magnets;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Shape;
 
+/**
+ * Still pretty basic class, extending the {@link Entity}. New:
+ * {@link PhysicalEntity}s have a specified amount of hitpoints and a
+ * speed-value with which they can move through the game.
+ * 
+ * @author Cakemix
+ * 
+ */
 public abstract class PhysicalEntity extends Entity {
 
     private int hp;
@@ -32,6 +40,16 @@ public abstract class PhysicalEntity extends Entity {
 	return this.hp;
     }
 
+    public Obstacle[] update(float timePerFrame, float toCenterX, float toCenterY, float attract) {
+	// calculate new position
+	this.calculateCircularMovement(timePerFrame, toCenterX, toCenterY, attract);
+
+	// draw image to a new position
+	this.getImg().draw(this.getX(), this.getY());
+
+	return null;
+    }
+
     /**
      * Updates the this PhysicalEntitie's position assuming a circular movement.
      * 
@@ -47,7 +65,7 @@ public abstract class PhysicalEntity extends Entity {
      * @param attract
      *            The strength with which the core attracts objects.
      */
-    protected void calculateCircularMovement(float timePerFrame, float toCenterX, float toCenterY, float attract) {
+    private void calculateCircularMovement(float timePerFrame, float toCenterX, float toCenterY, float attract) {
 	// from Cartesian to Radial
 	float transX = this.getX() - toCenterX;
 	float transY = toCenterY - this.getY();
@@ -60,11 +78,11 @@ public abstract class PhysicalEntity extends Entity {
 	// TODO: Just demo-code!
 	if (radius > 300)
 	    radius = 50;
+	// TODO: ---till here
 	if (attract == 0)
 	    radius += 0.1 * timePerFrame;
 	else
 	    radius -= attract * timePerFrame;
-	// TODO: ---till here
 
 	// back from Radial to Cartesian and save
 
