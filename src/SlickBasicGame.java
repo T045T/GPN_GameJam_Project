@@ -45,7 +45,7 @@ public class SlickBasicGame extends BasicGame{
 		ring = new Image("res/images/testRing.png");
 
 		core = new Circle(width / 2, height / 2, land.getWidth() / 2);
-		player = new Player("foo", 200, 200, plane.getWidth() / 2, 1f);
+		player = new Player("foo", 200, 200, plane.getWidth() / 2, 2f);
 
 		system.addEmitter(new MagnetoParticleEmitter(core, player));
 
@@ -99,14 +99,14 @@ public class SlickBasicGame extends BasicGame{
 	public void render(GameContainer gc, Graphics g)
 	throws SlickException
 	{
+		if (drawParticles) {
+			system.render();
+		}
 		land.draw((this.width - land.getWidth()) / 2, (this.height - land.getHeight()) / 2);
 
 		plane.draw(player.getMinX(), player.getMinY(), scale);
 
 		ring.draw(0, 0, (float) this.height/ring.getHeight());
-		//if (drawParticles) {
-			system.render();
-		//}
 	}
 
 	public static void main(String[] args)

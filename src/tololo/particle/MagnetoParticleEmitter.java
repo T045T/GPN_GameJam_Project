@@ -10,9 +10,9 @@ import org.newdawn.slick.geom.Circle;
 public class MagnetoParticleEmitter implements ParticleEmitter {
 	private int x;
 	private int y;
-	private int particleRate = 60;
+	private int particleRate = 30;
 	private int timer;
-	private float size = 10;
+	private float size = 6;
 	private float speed = 0.01f;
 	private Circle source;
 	private Circle target;

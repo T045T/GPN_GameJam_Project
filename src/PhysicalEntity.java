@@ -39,6 +39,9 @@ public class PhysicalEntity extends Circle {
 	this.speed = speed;
     }
     
+    private float force = -0.7f;
+    private float dampingFactor = 0.2f;
+    
     /**
      * Calculates the new position of this {@link PhysicalEntity} in relation to
      * the time this frame took.
@@ -57,10 +60,18 @@ public class PhysicalEntity extends Circle {
 	phi += speed * timePerFrame / radius;
 	if (radius > 300)
 		radius = 50;
+	/*
 	if (attract == 0)
 		radius += 0.1 * timePerFrame; 
 	else
 		radius -= attract *timePerFrame;
+	*/
+	force += attract;
+	if (force < 0.7 && force > -0.699999)
+		System.out.println(attract + " | " + force);
+	radius -= force;
+	force -= (force + 0.7f) * dampingFactor;
+	
 	//phi += 0.07;
 	/*
 	if (phi < -Math.PI) {
