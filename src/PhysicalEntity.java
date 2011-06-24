@@ -53,7 +53,9 @@ public class PhysicalEntity extends Circle {
 	float radius = (float) Math.sqrt(Math.pow(transX, 2) + Math.pow(transY, 2));
 
 	// calculate new values
-	phi += speed * timePerFrame;/*
+	// phi += speed * timePerFrame
+	phi += 0.1;
+	/*
 	if (phi < -Math.PI) {
 	    phi = (float) (Math.PI + phi);
 	} else if (phi > Math.PI) {
