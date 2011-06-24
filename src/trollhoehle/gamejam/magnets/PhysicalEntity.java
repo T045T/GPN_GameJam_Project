@@ -79,10 +79,9 @@ public abstract class PhysicalEntity extends Entity {
 	if (radius > 300)
 	    radius = 50;
 	// TODO: ---till here
-	if (attract == 0)
-	    radius += 0.1 * timePerFrame;
-	else
-	    radius -= attract * timePerFrame;
+
+	// constantly increase radius, except attract != 0
+	radius += (0.1 - attract) * timePerFrame;
 
 	// back from Radial to Cartesian and save
 
