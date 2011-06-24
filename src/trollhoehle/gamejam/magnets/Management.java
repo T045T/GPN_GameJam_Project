@@ -46,7 +46,7 @@ public class Management extends BasicGame {
 
     public void render(GameContainer gc, Graphics arg1) throws SlickException {
 	for (Entity e : this.entities) {
-	    e.getImg().draw(e.getX(), e.getY(), (float) ((float) e.getImg().getWidth()/(float) e.getShape().getWidth()));
+	    e.getImg().draw(e.getX(), e.getY(), (float) ((float) e.getShape().getWidth()/(float) e.getImg().getWidth()));
 	}
 
 	ring.getImg().draw(0, 0, (float) ((float) gc.getHeight() / (float) ring.getImg().getHeight()));
@@ -82,7 +82,7 @@ public class Management extends BasicGame {
 
 	Obstacle[] result;
 
-	this.ring.getImg().rotate(0.05f * delta);
+	this.ring.getImg().rotate(-0.02f * delta);
 
 	// PLAYERS
 	for (int i = 0; i < this.players.size(); i++) {
