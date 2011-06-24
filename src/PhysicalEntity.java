@@ -1,4 +1,5 @@
 import org.newdawn.slick.geom.Circle;
+import org.newdawn.slick.util.FastTrig;
 
 /**
  * Works completely with radial stuff
@@ -44,22 +45,24 @@ public class PhysicalEntity extends Circle {
      * @param timePerFrame
      *            The given time per frame.
      */
-    public void calculateNewPos(float timePerFrame) {
+    public void calculateNewPos(float timePerFrame, float toCenterX, float toCenterY) {
 	// from Cartesian to Radial
-	float phi = (float) Math.atan(x / y);
-	float radius = (float) (Math.cos(phi) / this.getCenterX());
+	float transX = x - toCenterX;
+	float transY = toCenterY - y;
+	float phi = (float) Math.atan2(transY, transX);
+	float radius = (float) Math.sqrt(Math.pow(transX, 2) + Math.pow(transY, 2));
 
 	// calculate new values
-	phi += speed * timePerFrame;
-	if (phi < 0) {
-	    phi = (float) (2 * Math.PI + phi);
+	phi += speed * timePerFrame;/*
+	if (phi < -Math.PI) {
+	    phi = (float) (Math.PI + phi);
 	} else if (phi > Math.PI) {
 	    phi = (float) (Math.PI - phi);
-	}
+	}*/
 
 	// back from Radial to Cartesian and save
-	this.setCenterX((float) (Math.cos(phi) * radius));
-	this.setCenterY((float) (Math.sin(phi) * radius));
+	this.setCenterX((float) (Math.cos(phi) * radius) + toCenterX);
+	this.setCenterY((float) (-Math.sin(phi) * radius) + toCenterY);
     }
 
 }

@@ -25,7 +25,7 @@ public class SlickBasicGame extends BasicGame{
     @Override
     public void init(GameContainer gc)
 			throws SlickException {
-		player = new Player("foo", 100, 60, (float)Math.PI, 10);
+		player = new Player("foo", 5, 60, (float)Math.PI, 0.01f);
 
         plane = new Image("res/test.png");
         land = new Image("res/trollface.png");
@@ -68,7 +68,7 @@ public class SlickBasicGame extends BasicGame{
             plane.setCenterOfRotation(plane.getWidth()/2.0f*scale, plane.getHeight()/2.0f*scale);
         }
         
-        player.calculateNewPos(delta);
+        player.calculateNewPos(delta*0.01f, x/2, y/2);
     }
  
     public void render(GameContainer gc, Graphics g)
@@ -76,7 +76,7 @@ public class SlickBasicGame extends BasicGame{
     {
         land.draw(0, 0);
  
-        plane.draw(player.getCenterX(), player.getCenterY(), scale);
+        plane.draw(player.getCenterX()+this.x/2, player.getCenterY()+this.y/2, scale);
  
     }
  
