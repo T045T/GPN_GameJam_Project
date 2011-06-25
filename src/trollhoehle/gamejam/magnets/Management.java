@@ -94,7 +94,7 @@ public class Management extends BasicGame {
 	Obstacle[] result;
 
 	// RING
-	this.ring.setSpeedMultiplier(currentSpeed);
+	//this.ring.setSpeedMultiplier(currentSpeed);
 	this.ring.getImg().rotate(-0.02f * delta - currentSpeed);
 
 	this.core.update(delta, gc.getWidth() / 2, gc.getHeight() / 2, 0.08f);
