@@ -100,7 +100,7 @@ public class Management extends BasicGame {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-	//GlobalSettings.getNyanLoop().playAsMusic(1.0f, 1.0f, true);
+	GlobalSettings.getNyanLoop().playAsMusic(1.0f, 1.0f, true);
     }
     
     
@@ -153,7 +153,9 @@ public class Management extends BasicGame {
 		if (p.getShape().intersects(ec.getShape())) {
 		    p.collision(ec);
 		    ec.collision(p);
-		    GlobalSettings.getPing().playAsSoundEffect(1.0f, 1.0f, false);
+		    if (!(ec instanceof Powerup)) {
+		    	GlobalSettings.getPing().playAsSoundEffect(1.0f, 1.0f, false);
+		    }
 		}
 	    }
 
