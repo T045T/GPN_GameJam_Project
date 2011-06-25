@@ -15,6 +15,7 @@ public abstract class Entity {
 
     private Image img;
     private Shape shape;
+    protected float speedMultiplier;
 
     /**
      * 
@@ -25,11 +26,12 @@ public abstract class Entity {
      * @param shape
      * @param img
      */
-    public Entity(float posX, float posY, Shape shape, Image img) {
+    public Entity(float posX, float posY, Shape shape, Image img, float speedMultiplier) {
 	this.shape = shape;
 	this.img = img;
 	this.shape.setCenterX(posX);
 	this.shape.setCenterY(posY);
+	this.speedMultiplier = speedMultiplier;
     }
 
     public Image getImg() {
@@ -56,6 +58,14 @@ public abstract class Entity {
 	return this.shape.getY();
     }
 
+    public float getSpeedMultiplier() {
+    	return this.speedMultiplier;
+    }
+    
+    public void setSpeedMultiplier(float speedMultiplier) {
+    	this.speedMultiplier = speedMultiplier;
+    }
+    
     /**
      * Returns the radius of the circle completely encloses this Entitie's
      * Shape.

@@ -15,9 +15,10 @@ public abstract class PhysicalEntity extends Entity {
 
     private int hp;
     private float speed;
+    
 
-    public PhysicalEntity(float posX, float posY, Shape shape, Image img, int hp, float startSpeed) {
-	super(posX, posY, shape, img);
+    public PhysicalEntity(float posX, float posY, Shape shape, Image img, int hp, float startSpeed, float speedMultiplier) {
+	super(posX, posY, shape, img, speedMultiplier);
 	this.hp = hp;
 	this.speed = startSpeed;
     }
@@ -58,6 +59,8 @@ public abstract class PhysicalEntity extends Entity {
     public void setSpeed(float speed) {
 	this.speed = speed;
     }
+    
+    
 
     public Obstacle[] update(float timePerFrame, float toCenterX, float toCenterY, float attract) {
 	// calculate new position
@@ -95,7 +98,7 @@ public abstract class PhysicalEntity extends Entity {
 	}
 
 	// constantly increase radius, except attract != 0
-	radius += (0.08 - attract) * timePerFrame;
+	radius += (this.speedMultiplier - attract) * timePerFrame;
 
 	// back from Radial to Cartesian and save
 

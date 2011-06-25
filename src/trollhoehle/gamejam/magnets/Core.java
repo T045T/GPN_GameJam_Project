@@ -19,8 +19,7 @@ public class Core extends Entity {
     private ArrayList<ObstacleSpawner> spawners;
 
     public Core(float screenWidth, float screenHeight) throws SlickException {
-	super(screenWidth / 2, screenHeight / 2, new Circle(screenWidth / 2 - 25, screenHeight / 2 - 25, 50),
-		new Image("res/images/core.png"));
+	super(screenWidth / 2, screenHeight / 2, new Circle(screenWidth / 2 - 25, screenHeight / 2 - 25, 50), new Image("res/images/core.png"), 0);
 	this.spawners = new ArrayList<ObstacleSpawner>();
 	this.spawners.add(new ObstacleSpawner((float) (this.getCenterX() + this.getRadius() * Math.cos(Math.PI)),
 		(float) (this.getCenterY() + this.getRadius() * Math.sin(Math.PI)), 0.05f, 3000f));
@@ -37,6 +36,8 @@ public class Core extends Entity {
 	this.pulse(timePerFrame);
 	return null;
     }
+
+    
 
     private void pulse(float timePerFrame) {
 	// TODO maaaaake iiiiit puuuuuuuulse! :O

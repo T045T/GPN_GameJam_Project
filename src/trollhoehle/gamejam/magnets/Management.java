@@ -25,11 +25,13 @@ public class Management extends BasicGame {
     private Core core;
     private Ring ring;
     private ArrayList<Player> players;
+    private float currentSpeed;
 
     public Management() {
 	super("Fucking magnets - How do they work?");
 	this.entities = new ArrayList<Entity>();
 	this.players = new ArrayList<Player>();
+	this.currentSpeed = 0.08f;
     }
 
     /**
@@ -79,8 +81,9 @@ public class Management extends BasicGame {
     @Override
     public void init(GameContainer gc) throws SlickException {
 
-	this.ring = new Ring(gc.getWidth() / 2, gc.getHeight() / 2, gc.getWidth() / 2);
+	this.ring = new Ring(gc.getWidth() / 2, gc.getHeight() / 2, gc.getWidth() / 2, 0.08f);
 	this.core = new Core(gc.getWidth(), gc.getHeight());
+
 	gc.getInput().addKeyListener(new MagnetKeyListener(this.players));
     }
 
@@ -90,12 +93,17 @@ public class Management extends BasicGame {
 
 	Obstacle[] result;
 
+	//RING
+	this.ring.setSpeedMultiplier(currentSpeed);
 	this.ring.getImg().rotate(-0.02f * delta);
 
 	// OBSTACLE SPAWNER
 	for (ObstacleSpawner os : this.core.getObstacleSpawner()) {
 	    result = os.update(delta, gc.getWidth() / 2, gc.getHeight() / 2, 0.08f);
 
+	    //Change speed
+	    os.setSpeedMultiplier(currentSpeed);
+	    
 	    if (result != null) {
 		for (Entity er : result) {
 		    this.entities.add(er);
@@ -109,6 +117,9 @@ public class Management extends BasicGame {
 	    float attract = 0;
 
 	    Player p = this.players.get(i);
+
+	    //Change speed
+	    p.setSpeedMultiplier(currentSpeed);
 
 	    // KEY STROKES:
 	    if (input.isKeyDown(p.getButton())) {
@@ -135,6 +146,10 @@ public class Management extends BasicGame {
 
 	    for (int j = 0; j < this.entities.size(); j++) {
 		Entity ec = this.entities.get(j);
+		
+		//Change speed
+		ec.setSpeedMultiplier(currentSpeed);
+		
 		if (p.getShape().intersects(ec.getShape())) {
 		    p.collision(ec);
 		    ec.collision(p);

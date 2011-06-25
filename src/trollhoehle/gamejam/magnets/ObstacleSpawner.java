@@ -20,7 +20,7 @@ public class ObstacleSpawner extends PhysicalEntity {
     private float timeFromLastSpawn;
 
     public ObstacleSpawner(float posX, float posY, float startSpeed, float timeBetweenSpawns) throws SlickException {
-	super(posX, posY, new Rectangle(posX, posY, 10, 5), new Image("res/images/gun.png"), -1, startSpeed);
+	super(posX, posY, new Rectangle(posX, posY, 10, 5), new Image("res/images/gun.png"), -1, startSpeed, 0.08f);
 	this.timeBetweenSpawns = timeBetweenSpawns;
     }
 
@@ -56,7 +56,7 @@ public class ObstacleSpawner extends PhysicalEntity {
 		    spawnedObstacles[0] = new PowerupInvincible(this.getCenterX(), this.getCenterY(), 1, OBSTACLE_SPEED);
 		} else {
 		    System.out.println("obstacle spawned");
-		    spawnedObstacles[0] = new Obstacle(this.getCenterX(), this.getCenterY(), 1, OBSTACLE_SPEED);
+		    spawnedObstacles[0] = new Obstacle(this.getCenterX(), this.getCenterY(), 1, OBSTACLE_SPEED, 0.08f);
 		}
 	    } catch (SlickException e) {
 		// TODO Auto-generated catch block
@@ -66,5 +66,4 @@ public class ObstacleSpawner extends PhysicalEntity {
 
 	return spawnedObstacles;
     }
-
 }
