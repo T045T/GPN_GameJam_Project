@@ -7,7 +7,7 @@ package trollhoehle.gamejam.magnets;
  * 
  */
 public abstract class GlobalSettings {
-    static private float globalSpeed = 0.2f;
+    static private float globalSpeed = 0.15f;
     static private int healthPerPlayer = 5;
     static private Management management;
 

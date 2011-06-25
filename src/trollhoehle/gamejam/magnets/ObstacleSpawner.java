@@ -14,7 +14,6 @@ import org.newdawn.slick.SlickException;
  */
 public class ObstacleSpawner extends PhysicalEntity {
 
-    protected static final float OBSTACLE_SPEED = 0.1f;
     /**
      * ms-value.
      */
@@ -45,18 +44,27 @@ public class ObstacleSpawner extends PhysicalEntity {
 	    timeFromLastSpawn = 0;
 	    try {
 		if (Math.random() < 0.1) {
-		    if (Math.random() < 0.5) {
+		    double random = Math.random();
+		    if (random < 0.25) {
 			System.out.println("invincible-powerup spawned");
 			spawnedObstacles.add(new PowerupInvincible(this.getCenterX(), this.getCenterY(), 1,
-				OBSTACLE_SPEED));
-		    } else {
+				GlobalSettings.getGlobalSpeed()));
+		    } else if (random >= 0.25 && random < 0.5) {
 			System.out.println("health-powerup spawned");
-			spawnedObstacles
-				.add(new PowerupHealth(this.getCenterX(), this.getCenterY(), 1, OBSTACLE_SPEED));
+			spawnedObstacles.add(new PowerupHealth(this.getCenterX(), this.getCenterY(), 1, GlobalSettings
+				.getGlobalSpeed()));
+		    } else if (random >= 0.5 && random < 0.75) {
+			System.out.println("speedup-powerup spawned");
+			spawnedObstacles.add(new PowerupSpeedup(this.getCenterX(), this.getCenterY(), 1, GlobalSettings
+				.getGlobalSpeed()));
+		    } else if (random >= 0.75 && random < 1) {
+			System.out.println("slowdown-powerup spawned");
+			spawnedObstacles.add(new PowerupSlowdown(this.getCenterX(), this.getCenterY(), 1,
+				GlobalSettings.getGlobalSpeed()));
 		    }
 		} else {
 		    System.out.println("obstacle spawned");
-		    spawnedObstacles.add(new Obstacle(this.getCenterX(), this.getCenterY(), 1, OBSTACLE_SPEED));
+		    spawnedObstacles.add(new Obstacle(this.getCenterX(), this.getCenterY(), 1, this.getSpeed()));
 		}
 	    } catch (SlickException e) {
 		// TODO Auto-generated catch block

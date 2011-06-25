@@ -35,7 +35,7 @@ public class NyanCatSpawner extends ObstacleSpawner {
 	if (timeFromLastSpawn >= timeBetweenSpawns) {
 	    timeFromLastSpawn = 0;
 	    try {
-		spawnedObstacles.add(new PowerupHealth(this.getCenterX(), this.getCenterY(), 1, OBSTACLE_SPEED,
+		spawnedObstacles.add(new PowerupHealth(this.getCenterX(), this.getCenterY(), 1, GlobalSettings.getGlobalSpeed(),
 			new Image("res/images/lol.png")));
 		System.out.println("health-powerup spawned");
 
