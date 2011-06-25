@@ -24,6 +24,21 @@ public class ObstacleSpawner extends PhysicalEntity {
 	this.timeBetweenSpawns = timeBetweenSpawns;
     }
 
+    protected void calculateCircularMovement(float timePerFrame, float toCenterX, float toCenterY) {
+	
+	// from Cartesian to Radial
+	float phi = this.getPolarPhi();
+	float radius = this.getPolarRadius();
+
+	// calculate new values
+	phi += this.getSpeed() * timePerFrame / radius;
+
+	// back from Radial to Cartesian and save
+
+	this.setCenterX((float) (toCenterX + Math.cos(phi) * radius));
+	this.setCenterY((float) (toCenterY - Math.sin(phi) * radius));
+    }
+    
     public Obstacle[] update(float timePerFrame, float toCenterX, float toCenterY, float attract) {
 	super.update(timePerFrame, toCenterX, toCenterY, attract);
 
