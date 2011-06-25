@@ -2,7 +2,6 @@ package trollhoehle.gamejam.magnets;
 
 import trollhoehle.gamejam.magnets.Player;
 
-import java.awt.Font;
 import java.util.ArrayList;
 
 import org.newdawn.slick.AppGameContainer;
@@ -13,8 +12,6 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.TrueTypeFont;
-import org.newdawn.slick.geom.Circle;
 
 public class Management extends BasicGame {
 
@@ -94,8 +91,10 @@ public class Management extends BasicGame {
 	Obstacle[] result;
 
 	// RING
-	//this.ring.setSpeedMultiplier(currentSpeed);
+	// this.ring.setSpeedMultiplier(currentSpeed);
 	this.ring.getImg().rotate(-0.02f * delta - currentSpeed);
+
+	this.ring.update(delta, gc.getWidth() / 2, gc.getHeight() / 2, 0.08f);
 
 	this.core.update(delta, gc.getWidth() / 2, gc.getHeight() / 2, 0.08f);
 
@@ -210,13 +209,15 @@ public class Management extends BasicGame {
 	}
 	for (int i = 0; i < this.entities.size(); i++) {
 	    if (this.entities.get(i) instanceof PhysicalEntity) {
-		if (((PhysicalEntity) this.entities.get(i)).getHp() <= 0 && ((PhysicalEntity) this.entities.get(i)).getHp() != -100) {
+		if (((PhysicalEntity) this.entities.get(i)).getHp() <= 0
+			&& ((PhysicalEntity) this.entities.get(i)).getHp() != -100) {
 		    this.entities.remove(i);
 		}
 	    }
 	}
 	for (int i = 0; i < this.core.getObstacleSpawner().size(); i++) {
-	    if (this.core.getObstacleSpawner().get(i).getHp() <= 0 && this.core.getObstacleSpawner().get(i).getHp() != -100) {
+	    if (this.core.getObstacleSpawner().get(i).getHp() <= 0
+		    && this.core.getObstacleSpawner().get(i).getHp() != -100) {
 		this.core.getObstacleSpawner().remove(i);
 	    }
 	}

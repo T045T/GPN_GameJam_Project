@@ -12,13 +12,13 @@ import org.newdawn.slick.SlickException;
  */
 public class ObstacleSpawner extends PhysicalEntity {
 
-    private static final float OBSTACLE_SPEED = 0.1f;
+    protected static final float OBSTACLE_SPEED = 0.1f;
     /**
      * ms-value.
      */
-    private float timeBetweenSpawns;
-    private float timeFromLastSpawn;
-    private float timeToLive;
+    protected float timeBetweenSpawns;
+    protected float timeFromLastSpawn;
+    protected float timeToLive;
 
     public ObstacleSpawner(float posX, float posY, float startSpeed, float timeBetweenSpawns, float timeToLive)
 	    throws SlickException {
