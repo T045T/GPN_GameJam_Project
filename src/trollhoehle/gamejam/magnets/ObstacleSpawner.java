@@ -25,7 +25,7 @@ public class ObstacleSpawner extends PhysicalEntity {
     }
 
     protected void calculateCircularMovement(float timePerFrame, float toCenterX, float toCenterY) {
-	
+
 	// from Cartesian to Radial
 	float phi = this.getPolarPhi();
 	float radius = this.getPolarRadius();
@@ -38,7 +38,7 @@ public class ObstacleSpawner extends PhysicalEntity {
 	this.setCenterX((float) (toCenterX + Math.cos(phi) * radius));
 	this.setCenterY((float) (toCenterY - Math.sin(phi) * radius));
     }
-    
+
     public Obstacle[] update(float timePerFrame, float toCenterX, float toCenterY, float attract) {
 	super.update(timePerFrame, toCenterX, toCenterY, attract);
 
@@ -51,7 +51,13 @@ public class ObstacleSpawner extends PhysicalEntity {
 	    timeFromLastSpawn = 0;
 	    spawnedObstacles = new Obstacle[1];
 	    try {
-		spawnedObstacles[0] = new Obstacle(this.getCenterX(), this.getCenterY(), 1, OBSTACLE_SPEED);
+		if (Math.random() > 0.2) {
+		    System.out.println("powerup spawned");
+		    spawnedObstacles[0] = new PowerupInvincible(this.getCenterX(), this.getCenterY(), 1, OBSTACLE_SPEED);
+		} else {
+		    System.out.println("obstacle spawned");
+		    spawnedObstacles[0] = new Obstacle(this.getCenterX(), this.getCenterY(), 1, OBSTACLE_SPEED);
+		}
 	    } catch (SlickException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
