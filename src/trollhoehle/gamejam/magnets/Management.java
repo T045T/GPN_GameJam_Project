@@ -93,17 +93,19 @@ public class Management extends BasicGame {
 
 	Obstacle[] result;
 
-	//RING
+	// RING
 	this.ring.setSpeedMultiplier(currentSpeed);
 	this.ring.getImg().rotate(-0.02f * delta);
+
+	this.core.update(delta, gc.getWidth() / 2, gc.getHeight() / 2, 0.08f);
 
 	// OBSTACLE SPAWNER
 	for (ObstacleSpawner os : this.core.getObstacleSpawner()) {
 	    result = os.update(delta, gc.getWidth() / 2, gc.getHeight() / 2, 0.08f);
 
-	    //Change speed
+	    // Change speed
 	    os.setSpeedMultiplier(currentSpeed);
-	    
+
 	    if (result != null) {
 		for (Entity er : result) {
 		    this.entities.add(er);
@@ -118,7 +120,7 @@ public class Management extends BasicGame {
 
 	    Player p = this.players.get(i);
 
-	    //Change speed
+	    // Change speed
 	    p.setSpeedMultiplier(currentSpeed);
 
 	    // KEY STROKES:
@@ -146,10 +148,10 @@ public class Management extends BasicGame {
 
 	    for (int j = 0; j < this.entities.size(); j++) {
 		Entity ec = this.entities.get(j);
-		
-		//Change speed
+
+		// Change speed
 		ec.setSpeedMultiplier(currentSpeed);
-		
+
 		if (p.getShape().intersects(ec.getShape())) {
 		    p.collision(ec);
 		    ec.collision(p);
@@ -202,15 +204,20 @@ public class Management extends BasicGame {
 
 	// KILL DEAD PHYSICAL ENTITIES
 	for (int i = 0; i < this.players.size(); i++) {
-	    if (this.players.get(i).getHp() <= 0) {
+	    if (this.players.get(i).getHp() == 0) {
 		this.players.remove(i);
 	    }
 	}
 	for (int i = 0; i < this.entities.size(); i++) {
 	    if (this.entities.get(i) instanceof PhysicalEntity) {
-		if (((PhysicalEntity) this.entities.get(i)).getHp() <= 0) {
+		if (((PhysicalEntity) this.entities.get(i)).getHp() == 0) {
 		    this.entities.remove(i);
 		}
+	    }
+	}
+	for (int i = 0; i < this.core.getObstacleSpawner().size(); i++) {
+	    if (this.core.getObstacleSpawner().get(i).getHp() == 0) {
+		this.core.getObstacleSpawner().remove(i);
 	    }
 	}
 

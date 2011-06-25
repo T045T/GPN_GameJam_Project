@@ -16,15 +16,14 @@ import org.newdawn.slick.geom.Circle;
  */
 public class Core extends Entity {
 
+    private static final float OBSTACLE_SPAWNER_SPAWN_PROBABILITY = 20000f;
     private ArrayList<ObstacleSpawner> spawners;
 
     public Core(float screenWidth, float screenHeight) throws SlickException {
-	super(screenWidth / 2, screenHeight / 2, new Circle(screenWidth / 2 - 25, screenHeight / 2 - 25, 50), new Image("res/images/core.png"), 0);
+	super(screenWidth / 2, screenHeight / 2, new Circle(screenWidth / 2 - 25, screenHeight / 2 - 25, 50),
+		new Image("res/images/core.png"), 0);
 	this.spawners = new ArrayList<ObstacleSpawner>();
-	this.spawners.add(new ObstacleSpawner((float) (this.getCenterX() + this.getRadius() * Math.cos(Math.PI)),
-		(float) (this.getCenterY() + this.getRadius() * Math.sin(Math.PI)), 0.05f, 3000f));
-	this.spawners.add(new ObstacleSpawner((float) (this.getCenterX() + this.getRadius() * Math.cos(2 * Math.PI)),
-		(float) (this.getCenterY() + this.getRadius() * Math.sin(2 * Math.PI)), 0.05f, 3000f));
+	this.spawners.add(new ObstacleSpawner(this.getCenterX() + this.getRadius(), this.getCenterY(), 0.05f, 3000f));
     }
 
     public ArrayList<ObstacleSpawner> getObstacleSpawner() {
@@ -34,10 +33,19 @@ public class Core extends Entity {
     @Override
     public Obstacle[] update(float timePerFrame, float toCenterX, float toCenterY, float attract) {
 	this.pulse(timePerFrame);
+	// TODO: Right random-math-magic!
+	if (Math.random() * (timePerFrame / 1000) >= 0.5) {
+	    try {
+		System.out.println("new spawner spawned");
+		this.spawners.add(new ObstacleSpawner(this.getCenterX() + this.getRadius(), this.getCenterY(), 0.05f,
+			(float) (Math.random() * 3000f)));
+	    } catch (SlickException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	    }
+	}
 	return null;
     }
-
-    
 
     private void pulse(float timePerFrame) {
 	// TODO maaaaake iiiiit puuuuuuuulse! :O

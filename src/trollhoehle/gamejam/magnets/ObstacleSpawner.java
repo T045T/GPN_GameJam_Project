@@ -18,10 +18,12 @@ public class ObstacleSpawner extends PhysicalEntity {
      */
     private float timeBetweenSpawns;
     private float timeFromLastSpawn;
+    private float timeToLive;
 
     public ObstacleSpawner(float posX, float posY, float startSpeed, float timeBetweenSpawns) throws SlickException {
 	super(posX, posY, new Rectangle(posX, posY, 10, 5), new Image("res/images/gun.png"), -1, startSpeed, 0.08f);
 	this.timeBetweenSpawns = timeBetweenSpawns;
+	this.timeToLive = (float) (Math.random() * 30000);
     }
 
     protected void calculateCircularMovement(float timePerFrame, float toCenterX, float toCenterY) {
@@ -62,6 +64,12 @@ public class ObstacleSpawner extends PhysicalEntity {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	    }
+	}
+
+	this.timeToLive -= timePerFrame;
+
+	if (timeToLive <= 0) {
+	    this.setHp(0);
 	}
 
 	return spawnedObstacles;
