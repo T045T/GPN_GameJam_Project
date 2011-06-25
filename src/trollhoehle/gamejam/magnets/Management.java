@@ -2,6 +2,9 @@ package trollhoehle.gamejam.magnets;
 
 import trollhoehle.gamejam.magnets.Player;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import org.newdawn.slick.AppGameContainer;
@@ -12,6 +15,8 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.openal.Audio;
+import org.newdawn.slick.openal.AudioLoader;
 
 public class Management extends BasicGame {
 
@@ -22,6 +27,13 @@ public class Management extends BasicGame {
     private Core core;
     private Ring ring;
     private ArrayList<Player> players;
+    private Audio nyanLoop;
+    private Audio pa_health;
+    private Audio pa_speedup;
+    private Audio pa_slowdown;
+    private Audio ping;
+    private Audio pa_invincible;
+    private Audio explosion;
 
     public Management() {
 	super("Fucking magnets - How do they work?");
@@ -84,6 +96,21 @@ public class Management extends BasicGame {
 	this.core = new Core(gc.getWidth(), gc.getHeight());
 
 	gc.getInput().addKeyListener(new MagnetKeyListener(this.players));
+	
+	this.initSound();
+    }
+    
+    private void initSound() {
+    	try {
+			this.nyanLoop = AudioLoader.getAudio("WAV", new FileInputStream("res/sound/nyanlooped.wav"));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		this.nyanLoop.playAsMusic(1.0f, 1.0f, true);
     }
 
     @Override
