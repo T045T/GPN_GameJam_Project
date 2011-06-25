@@ -20,6 +20,7 @@ public class PowerupHealth extends Powerup {
 		if (collider instanceof Player || collider instanceof Ring) {
 			if(collider instanceof Player) {
 				((Player) collider).setHp(((Player) collider).getHp()+1);
+				GlobalSettings.getPa_health().playAsSoundEffect(1.0f, 1.0f, false);
 			}
 		    super.collision(collider);
 		}

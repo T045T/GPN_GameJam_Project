@@ -19,6 +19,7 @@ public class PowerupInvincible extends Powerup {
 		if (collider instanceof Player || collider instanceof Ring) {
 			if(collider instanceof Player) {
 				((Player) collider).setCollisionTimer(1500);
+				GlobalSettings.getPa_invincible().playAsSoundEffect(1.0f, 1.0f, false);
 			}
 		    super.collision(collider);
 		}

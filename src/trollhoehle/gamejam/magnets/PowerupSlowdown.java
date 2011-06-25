@@ -19,6 +19,7 @@ public class PowerupSlowdown extends Powerup {
 		if (collider instanceof Player || collider instanceof Ring) {
 			if(collider instanceof Player) {
 				collider.setSpeedMultiplier(collider.getSpeedMultiplier()-collider.getSpeedMultiplier()*0.5f);
+				GlobalSettings.getPa_slowdown().playAsSoundEffect(1.0f, 1.0f, false);
 			}
 		    super.collision(collider);
 		}
