@@ -54,7 +54,7 @@ public class ObstacleSpawner extends PhysicalEntity {
 	    try {
 		if (Math.random() > 0.2) {
 		    System.out.println("powerup spawned");
-		    spawnedObstacles[0] = new PowerupInvincible(this.getCenterX(), this.getCenterY(), 1, OBSTACLE_SPEED);
+		    spawnedObstacles[0] = new PowerupInvincible(this.getCenterX(), this.getCenterY(), 1, OBSTACLE_SPEED,  new Image("res/images/lulz.jpg"));
 		} else {
 		    System.out.println("obstacle spawned");
 		    spawnedObstacles[0] = new Obstacle(this.getCenterX(), this.getCenterY(), 1, OBSTACLE_SPEED, 0.08f);

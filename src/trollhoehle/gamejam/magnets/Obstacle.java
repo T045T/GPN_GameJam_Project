@@ -16,6 +16,10 @@ public class Obstacle extends PhysicalEntity {
     public Obstacle(float posX, float posY, int hp, float startSpeed, float speedMultiplier) throws SlickException {
 	super(posX, posY, new Circle(posX, posY, 20), new Image("res/images/trollface.png"), hp, startSpeed, speedMultiplier);
     }
+    
+    public Obstacle(float posX, float posY, int hp, float startSpeed, float speedMultiplier, Image img) throws SlickException {
+    	super(posX, posY, new Circle(posX, posY, 20), img, hp, startSpeed, speedMultiplier);
+        }
 
     public Obstacle[] collision(Entity collider) {
 	if (collider instanceof Player || collider instanceof Ring) {

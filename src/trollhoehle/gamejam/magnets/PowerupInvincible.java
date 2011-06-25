@@ -1,11 +1,13 @@
 package trollhoehle.gamejam.magnets;
 
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Image;
+
 
 public class PowerupInvincible extends Powerup {
 
-	public PowerupInvincible(float posX, float posY, int hp, float startSpeed) throws SlickException {
-		super(posX, posY, hp, startSpeed);
+	public PowerupInvincible(float posX, float posY, int hp, float startSpeed, Image img) throws SlickException {
+		super(posX, posY, hp, startSpeed,img);
 		// TODO Auto-generated constructor stub
 	}
 	
