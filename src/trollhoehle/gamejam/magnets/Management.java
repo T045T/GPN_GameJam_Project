@@ -31,7 +31,7 @@ public class Management extends BasicGame {
 	super("Fucking magnets - How do they work?");
 	this.entities = new ArrayList<Entity>();
 	this.players = new ArrayList<Player>();
-	this.currentSpeed = 0.08f;
+	this.currentSpeed = 0.1f;
     }
 
     /**
