@@ -22,7 +22,7 @@ public class ObstacleSpawner extends PhysicalEntity {
 
     public ObstacleSpawner(float posX, float posY, float startSpeed, float timeBetweenSpawns, float timeToLive)
 	    throws SlickException {
-	super(posX, posY, new Rectangle(posX, posY, 10, 5), new Image("res/images/gun.png"), -1, startSpeed, 0.08f);
+	super(posX, posY, new Rectangle(posX, posY, 10, 5), new Image("res/images/gun.png"), -100, startSpeed, 0.08f);
 	this.timeBetweenSpawns = timeBetweenSpawns;
 	this.timeToLive = timeToLive;
     }
