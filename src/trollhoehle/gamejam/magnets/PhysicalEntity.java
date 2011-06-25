@@ -87,7 +87,12 @@ public abstract class PhysicalEntity extends Entity {
 	float radius = this.getPolarRadius();
 
 	// calculate new values
-	phi += speed * timePerFrame / radius;
+	if (this instanceof Obstacle) {
+		phi -= speed * timePerFrame / radius;
+	}
+	else {
+		phi += speed * timePerFrame / radius;
+	}
 
 	// constantly increase radius, except attract != 0
 	radius += (0.08 - attract) * timePerFrame;
