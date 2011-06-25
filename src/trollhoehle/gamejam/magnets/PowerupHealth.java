@@ -1,0 +1,24 @@
+package trollhoehle.gamejam.magnets;
+
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Image;
+
+
+public class PowerupHealth extends Powerup {
+
+	public PowerupHealth(float posX, float posY, int hp, float startSpeed, Image img) throws SlickException {
+		super(posX, posY, hp, startSpeed,img);
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Obstacle[] collision(Entity collider) {
+		if (collider instanceof Player || collider instanceof Ring) {
+			if(collider instanceof Player) {
+				((Player) collider).setHp(((Player) collider).getHp()+1);
+			}
+		    super.collision(collider);
+		}
+		return null;
+	    }
+	
+}
