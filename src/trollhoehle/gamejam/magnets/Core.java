@@ -24,7 +24,7 @@ public class Core extends Entity {
 		new Image("res/images/core.png"), 0);
 	this.spawners = new ArrayList<ObstacleSpawner>();
 	this.spawners.add(new ObstacleSpawner(this.getCenterX() + this.getRadius(), this.getCenterY(), 0.05f, 3000f,
-		30000f));
+		30000f, this.getSpeedMultiplier()));
     }
 
     public ArrayList<ObstacleSpawner> getObstacleSpawner() {
@@ -49,7 +49,7 @@ public class Core extends Entity {
 	    try {
 		float rndFireRate = (float) (Math.random() * 10000f);
 		this.spawners.add(new ObstacleSpawner(this.getCenterX() + this.getRadius(), this.getCenterY(), 0.05f,
-			rndFireRate * 1.3f, rndFireRate * 10));
+			rndFireRate * 1.3f, rndFireRate * 10, this.getSpeedMultiplier()));
 	    } catch (SlickException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();

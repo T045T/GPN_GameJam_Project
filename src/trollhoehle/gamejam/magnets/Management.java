@@ -28,7 +28,7 @@ public class Management extends BasicGame {
 	super("Fucking magnets - How do they work?");
 	this.entities = new ArrayList<Entity>();
 	this.players = new ArrayList<Player>();
-	this.currentSpeed = 0.2f;
+	this.currentSpeed = 1f;
     }
 
     /**
@@ -42,6 +42,26 @@ public class Management extends BasicGame {
 	app.setTargetFrameRate(60);
 	app.start();
 
+    }
+
+    /**
+     * Sets the speed of all objects to a desired value.
+     * 
+     * @param currentSpeed
+     */
+    public void setCurrentSpeed(float currentSpeed) {
+	this.currentSpeed = currentSpeed;
+
+	this.core.setSpeedMultiplier(this.currentSpeed);
+	this.ring.setSpeedMultiplier(this.currentSpeed);
+
+	for (Entity e : this.entities) {
+	    e.setSpeedMultiplier(this.currentSpeed);
+	}
+
+	for (Player p : this.players) {
+	    p.setSpeedMultiplier(this.currentSpeed);
+	}
     }
 
     public void render(GameContainer gc, Graphics arg1) throws SlickException {
@@ -66,6 +86,8 @@ public class Management extends BasicGame {
 	this.core = new Core(gc.getWidth(), gc.getHeight());
 
 	gc.getInput().addKeyListener(new MagnetKeyListener(this.players));
+
+	this.setCurrentSpeed(currentSpeed);
     }
 
     @Override
@@ -75,7 +97,6 @@ public class Management extends BasicGame {
 	ArrayList<Obstacle> newObstacles = new ArrayList<Obstacle>();
 
 	// RING
-	this.ring.setSpeedMultiplier(currentSpeed);
 	newObstacles.addAll(this.ring.update(delta, gc.getWidth() / 2, gc.getHeight() / 2, 0.08f));
 
 	// CORE
@@ -86,9 +107,6 @@ public class Management extends BasicGame {
 	    float attract = 0;
 
 	    Player p = this.players.get(i);
-
-	    // Change speed
-	    p.setSpeedMultiplier(currentSpeed);
 
 	    // KEY STROKES:
 	    if (input.isKeyDown(p.getButton())) {
@@ -115,9 +133,6 @@ public class Management extends BasicGame {
 
 	    for (int j = 0; j < this.entities.size(); j++) {
 		Entity ec = this.entities.get(j);
-
-		// Change speed
-		ec.setSpeedMultiplier(currentSpeed);
 
 		if (p.getShape().intersects(ec.getShape())) {
 		    p.collision(ec);
