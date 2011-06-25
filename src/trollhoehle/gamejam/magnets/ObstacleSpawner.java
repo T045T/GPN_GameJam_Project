@@ -36,7 +36,7 @@ public class ObstacleSpawner extends PhysicalEntity {
 	ArrayList<Obstacle> spawnedObstacles = super.update(timePerFrame, toCenterX, toCenterY, attract);
 
 	this.getImg().setRotation(-(float) (180 * this.getPolarPhi() / Math.PI));
-
+System.out.println("FUUUUUUUUU");
 	this.timeFromLastSpawn += timePerFrame;
 	if (timeFromLastSpawn >= timeBetweenSpawns) {
 	    timeFromLastSpawn = 0;
