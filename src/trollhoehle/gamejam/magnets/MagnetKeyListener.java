@@ -10,7 +10,6 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Circle;
 
 public class MagnetKeyListener implements KeyListener {
-    private final static int LIFE_PER_PLAYER = 5;
     private ArrayList<Player> players;
 
     int counter = 0;
@@ -58,10 +57,8 @@ public class MagnetKeyListener implements KeyListener {
 		    counter = 0;
 
 		    try {
-			this.players
-				.add(new Player(200, 200, new Circle(200, 200, 20), new Image(
-					"res/images/magnet_inactive.png"), LIFE_PER_PLAYER, 0.15f, "Trollspieler "
-					+ arg1, arg0, 0.08f));
+			this.players.add(new Player(200, 200, new Circle(200, 200, 20), new Image(
+				"res/images/magnet_inactive.png"), 0.15f, "Trollspieler " + arg1, arg0, 0.08f));
 		    } catch (SlickException e) {
 
 		    }

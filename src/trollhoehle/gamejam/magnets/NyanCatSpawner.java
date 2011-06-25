@@ -6,8 +6,8 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 public class NyanCatSpawner extends ObstacleSpawner {
-    public NyanCatSpawner(float posX, float posY, float startSpeed, float timeBetweenSpawns,float speedMultiplier) throws SlickException {
-	super(posX, posY, startSpeed, timeBetweenSpawns, 0,speedMultiplier);
+    public NyanCatSpawner(float posX, float posY, float startSpeed, float timeBetweenSpawns) throws SlickException {
+	super(posX, posY, startSpeed, timeBetweenSpawns, 0);
     }
 
     protected void calculateCircularMovement(float timePerFrame, float toCenterX, float toCenterY, float attract) {

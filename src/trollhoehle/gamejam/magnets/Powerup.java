@@ -6,11 +6,9 @@ import org.newdawn.slick.SlickException;
 
 public class Powerup extends Obstacle {
 
-
     public Powerup(float posX, float posY, int hp, float startSpeed, Image img) throws SlickException {
-	super(posX, posY, hp, startSpeed, 0.08f,img);
+	super(posX, posY, hp, startSpeed);
 	// TODO Auto-generated constructor stub
     }
-
 
 }

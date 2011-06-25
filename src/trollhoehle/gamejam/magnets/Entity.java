@@ -28,12 +28,12 @@ public abstract class Entity {
      * @param shape
      * @param img
      */
-    public Entity(float posX, float posY, Shape shape, Image img, float speedMultiplier) {
+    public Entity(float posX, float posY, Shape shape, Image img) {
 	this.shape = shape;
 	this.img = img;
 	this.shape.setCenterX(posX);
 	this.shape.setCenterY(posY);
-	this.speedMultiplier = speedMultiplier;
+	this.speedMultiplier = GlobalSettings.getGlobalSpeed();
     }
 
     /**

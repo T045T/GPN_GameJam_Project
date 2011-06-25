@@ -22,13 +22,11 @@ public class Management extends BasicGame {
     private Core core;
     private Ring ring;
     private ArrayList<Player> players;
-    private float currentSpeed;
 
     public Management() {
 	super("Fucking magnets - How do they work?");
 	this.entities = new ArrayList<Entity>();
 	this.players = new ArrayList<Player>();
-	this.currentSpeed = 1f;
     }
 
     /**
@@ -36,7 +34,9 @@ public class Management extends BasicGame {
      * @throws SlickException
      */
     public static void main(String[] args) throws SlickException {
-	AppGameContainer app = new AppGameContainer(new Management());
+	Management management = new Management();
+	AppGameContainer app = new AppGameContainer(management);
+	GlobalSettings.setManagement(management);
 
 	app.setDisplayMode(720, 720, false);
 	app.setTargetFrameRate(60);
@@ -49,18 +49,16 @@ public class Management extends BasicGame {
      * 
      * @param currentSpeed
      */
-    public void setCurrentSpeed(float currentSpeed) {
-	this.currentSpeed = currentSpeed;
-
-	this.core.setSpeedMultiplier(this.currentSpeed);
-	this.ring.setSpeedMultiplier(this.currentSpeed);
+    public void changeCurrentSpeed(float currentSpeed) {
+	this.core.setSpeedMultiplier(currentSpeed);
+	this.ring.setSpeedMultiplier(currentSpeed);
 
 	for (Entity e : this.entities) {
-	    e.setSpeedMultiplier(this.currentSpeed);
+	    e.setSpeedMultiplier(currentSpeed);
 	}
 
 	for (Player p : this.players) {
-	    p.setSpeedMultiplier(this.currentSpeed);
+	    p.setSpeedMultiplier(currentSpeed);
 	}
     }
 
@@ -82,12 +80,10 @@ public class Management extends BasicGame {
     @Override
     public void init(GameContainer gc) throws SlickException {
 
-	this.ring = new Ring(gc.getWidth() / 2, gc.getHeight() / 2, gc.getWidth() / 2, 0.08f);
+	this.ring = new Ring(gc.getWidth() / 2, gc.getHeight() / 2, gc.getWidth() / 2);
 	this.core = new Core(gc.getWidth(), gc.getHeight());
 
 	gc.getInput().addKeyListener(new MagnetKeyListener(this.players));
-
-	this.setCurrentSpeed(currentSpeed);
     }
 
     @Override

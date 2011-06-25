@@ -21,10 +21,10 @@ public class Core extends Entity {
 
     public Core(float screenWidth, float screenHeight) throws SlickException {
 	super(screenWidth / 2, screenHeight / 2, new Circle(screenWidth / 2 - 25, screenHeight / 2 - 25, 50),
-		new Image("res/images/core.png"), 0);
+		new Image("res/images/core.png"));
 	this.spawners = new ArrayList<ObstacleSpawner>();
 	this.spawners.add(new ObstacleSpawner(this.getCenterX() + this.getRadius(), this.getCenterY(), 0.05f, 3000f,
-		30000f, this.getSpeedMultiplier()));
+		30000f));
     }
 
     public ArrayList<ObstacleSpawner> getObstacleSpawner() {
@@ -49,7 +49,7 @@ public class Core extends Entity {
 	    try {
 		float rndFireRate = (float) (Math.random() * 10000f);
 		this.spawners.add(new ObstacleSpawner(this.getCenterX() + this.getRadius(), this.getCenterY(), 0.05f,
-			rndFireRate * 1.3f, rndFireRate * 10, this.getSpeedMultiplier()));
+			rndFireRate * 1.3f, rndFireRate * 10));
 	    } catch (SlickException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();

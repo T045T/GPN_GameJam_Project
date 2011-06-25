@@ -26,9 +26,9 @@ public class Player extends PhysicalEntity {
     private int button;
     private Color color = new Color(255, 255, 255);
 
-    public Player(float posX, float posY, Shape shape, Image img, int hp, float startSpeed, String name, int button,
+    public Player(float posX, float posY, Shape shape, Image img, float startSpeed, String name, int button,
 	    float speedMultiplier) {
-	super(posX, posY, shape, img, hp, startSpeed, speedMultiplier);
+	super(posX, posY, shape, img, GlobalSettings.getHealthPerPlayer(), startSpeed);
 	this.collisionTimer = 0;
 	this.name = name;
 	this.button = button;
@@ -42,9 +42,9 @@ public class Player extends PhysicalEntity {
 	this.color.brighter(1000);
     }
 
-    public Player(float posX, float posY, Shape shape, Image img, int hp, float startSpeed, String name, int button,
+    public Player(float posX, float posY, Shape shape, Image img, float startSpeed, String name, int button,
 	    Color color, float speedMultiplier) {
-	this(posX, posY, shape, img, hp, startSpeed, name, button, speedMultiplier);
+	this(posX, posY, shape, img, GlobalSettings.getGlobalSpeed(), name, button, speedMultiplier);
 	this.color = color;
 
     }
