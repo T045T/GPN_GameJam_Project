@@ -31,7 +31,7 @@ public class Management extends BasicGame {
 	super("Fucking magnets - How do they work?");
 	this.entities = new ArrayList<Entity>();
 	this.players = new ArrayList<Player>();
-	this.currentSpeed = 0.1f;
+	this.currentSpeed = 0.2f;
     }
 
     /**
@@ -95,7 +95,7 @@ public class Management extends BasicGame {
 
 	//RING
 	this.ring.setSpeedMultiplier(currentSpeed);
-	this.ring.getImg().rotate(-0.02f * delta);
+	this.ring.getImg().rotate(-0.02f * delta - currentSpeed);
 
 	// OBSTACLE SPAWNER
 	for (ObstacleSpawner os : this.core.getObstacleSpawner()) {
