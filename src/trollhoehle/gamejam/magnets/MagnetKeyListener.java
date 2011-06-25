@@ -8,16 +8,22 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.KeyListener;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Circle;
+import org.newdawn.slick.particles.ParticleSystem;
+import org.newdawn.slick.particles.ParticleEmitter;
+
 
 public class MagnetKeyListener implements KeyListener {
     private ArrayList<Player> players;
-
+    private ParticleSystem system;
+    private Entity core;
     int counter = 0;
 
     int pressedButton = 0;
 
-    public MagnetKeyListener(ArrayList<Player> players) {
+    public MagnetKeyListener(ArrayList<Player> players, ParticleSystem system, Entity core) {
 	this.players = players;
+	this.system = system;
+	this.core = core;
 	this.counter = 0;
 	this.pressedButton = 0;
     }
@@ -57,8 +63,11 @@ public class MagnetKeyListener implements KeyListener {
 		    counter = 0;
 
 		    try {
-			this.players.add(new Player(200, 200, new Circle(200, 200, 20), new Image(
-				"res/images/magnet_inactive.png"), 0.15f, "Trollspieler " + arg1, arg0, 0.08f));
+		    	Player tempPlayer = new Player(200, 200, new Circle(200, 200, 20), new Image(
+				"res/images/magnet_inactive.png"), 0.15f, "Trollspieler " + arg1, arg0, 0.08f);
+		    	
+				system.addEmitter(new MagnetoParticleEmitter(tempPlayer, core));
+				players.add(tempPlayer);
 		    } catch (SlickException e) {
 
 		    }
