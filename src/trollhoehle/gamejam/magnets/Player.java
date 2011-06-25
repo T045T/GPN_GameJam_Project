@@ -88,7 +88,7 @@ public class Player extends PhysicalEntity {
 		this.setCenterX((float) (this.getCenterX() + Math.cos(phi_relativ) * 20));
 		this.setCenterY((float) (this.getCenterY() - Math.sin(phi_relativ) * 20));
 		
-	if (collider instanceof Player) {
+	if (collider instanceof Player || collider instanceof Powerup) {
 	}
 	else{
 		if (this.collisionTimer <= 0) {
