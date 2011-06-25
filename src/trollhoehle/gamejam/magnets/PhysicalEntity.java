@@ -81,7 +81,7 @@ public abstract class PhysicalEntity extends Entity {
      * @param attract
      *            The strength with which the core attracts objects.
      */
-    private void calculateCircularMovement(float timePerFrame, float toCenterX, float toCenterY, float attract) {
+    protected void calculateCircularMovement(float timePerFrame, float toCenterX, float toCenterY, float attract) {
 	// from Cartesian to Radial
 	float phi = this.getPolarPhi();
 	float radius = this.getPolarRadius();
