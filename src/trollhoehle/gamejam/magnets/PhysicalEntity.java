@@ -88,9 +88,9 @@ public abstract class PhysicalEntity extends Entity {
      */
     protected void calculateCircularMovement(float timePerFrame, float toCenterX, float toCenterY, float attract) {
 
-	System.out.println(radius + " | " + this.getPolarRadius());
+	//System.out.println(radius + " | " + this.getPolarRadius());
 	float radiusChangeRatio = (float) Math.pow(radius / this.getPolarRadius(), 2);
-	System.out.println(radiusChangeRatio);
+	//System.out.println(radiusChangeRatio);
 	speed *= radiusChangeRatio;
 	// from Cartesian to Radial
 	float phi = this.getPolarPhi();

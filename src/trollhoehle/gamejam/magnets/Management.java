@@ -177,12 +177,6 @@ public class Management extends BasicGame {
 	    // NEW POSITION
 	    newObstacles = e.update(delta, gc.getWidth() / 2, gc.getHeight() / 2, 0);
 
-	    if (newObstacles != null) {
-		for (Entity newE : newObstacles) {
-		    this.entities.add(newE);
-		}
-	    }
-
 	    // COLLISION
 	    for (int j = i + 1; j < this.entities.size(); j++) {
 		Entity ec = this.entities.get(j);
@@ -216,12 +210,6 @@ public class Management extends BasicGame {
 			&& ((PhysicalEntity) this.entities.get(i)).getHp() != -100) {
 		    this.entities.remove(i);
 		}
-	    }
-	}
-	for (int i = 0; i < this.core.getObstacleSpawner().size(); i++) {
-	    if (this.core.getObstacleSpawner().get(i).getHp() <= 0
-		    && this.core.getObstacleSpawner().get(i).getHp() != -100) {
-		this.core.getObstacleSpawner().remove(i);
 	    }
 	}
 

@@ -56,8 +56,14 @@ public class Core extends Entity {
 	    }
 	}
 
-	// LET THE SPAWNERS SPAWN
-	for (ObstacleSpawner os : this.spawners) {
+	// Do stuff for the Spawners:
+	for (int i = 0; i < this.spawners.size(); i++) {
+	    ObstacleSpawner os = this.spawners.get(i);
+	    // CHECK IF SPAWNERS NEED TO BE DESTROYED
+	    if (os.getHp() == 0) {
+		this.spawners.remove(i);
+	    }
+	    // LET THE SPAWNERS SPAWN
 	    obstacles.addAll(os.update(timePerFrame, toCenterX, toCenterY, attract));
 	}
 

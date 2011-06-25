@@ -33,9 +33,7 @@ public class ObstacleSpawner extends PhysicalEntity {
     }
 
     public ArrayList<Obstacle> update(float timePerFrame, float toCenterX, float toCenterY, float attract) {
-	super.update(timePerFrame, toCenterX, toCenterY, attract);
-
-	ArrayList<Obstacle> spawnedObstacles = new ArrayList<Obstacle>();
+	ArrayList<Obstacle> spawnedObstacles = super.update(timePerFrame, toCenterX, toCenterY, attract);
 
 	this.getImg().setRotation(-(float) (180 * this.getPolarPhi() / Math.PI));
 
