@@ -22,9 +22,10 @@ public class Player extends PhysicalEntity {
     private float collisionTimer;
     private String name;
     private int button;
-    private Color color = new Color(255,255,255);
+    private Color color = new Color(255, 255, 255);
 
-    public Player(float posX, float posY, Shape shape, Image img, int hp, float startSpeed, String name, int button, float speedMultiplier) {
+    public Player(float posX, float posY, Shape shape, Image img, int hp, float startSpeed, String name, int button,
+	    float speedMultiplier) {
 	super(posX, posY, shape, img, hp, startSpeed, speedMultiplier);
 	this.collisionTimer = 0;
 	this.name = name;
@@ -38,14 +39,16 @@ public class Player extends PhysicalEntity {
 	this.color = new Color(r, g, b);
 	this.color.brighter(1000);
     }
-    public Player(float posX, float posY, Shape shape, Image img, int hp, float startSpeed, String name, int button, Color color, float speedMultiplier) {
-        this( posX,  posY,  shape,  img,  hp,  startSpeed,  name,  button, speedMultiplier);
-        this.color = color;
+
+    public Player(float posX, float posY, Shape shape, Image img, int hp, float startSpeed, String name, int button,
+	    Color color, float speedMultiplier) {
+	this(posX, posY, shape, img, hp, startSpeed, name, button, speedMultiplier);
+	this.color = color;
 
     }
-    
+
     public Color getColor() {
-    	return color;
+	return color;
     }
 
     public boolean isInvincible() {
@@ -74,36 +77,39 @@ public class Player extends PhysicalEntity {
 	if (this.collisionTimer > 0) {
 	    this.collisionTimer -= timePerFrame;
 	}
+
+	this.getImg().setRotation(-(float) (180 + 180 * this.getPolarPhi() / Math.PI));
+
 	return super.update(timePerFrame, toCenterX, toCenterY, attract);
     }
 
     public Obstacle[] collision(Entity collider) {
-	
-    	// calculate relative angle between colliding parties
-		float phi_relativ = (float) (Math.atan2(this.getCenterY() -collider.getCenterY(), collider.getCenterX() - this.getCenterX()));
-		// bounce off into the opposite direction exept when hitting the Ring 
-		if(!(collider instanceof Ring))
-			phi_relativ += Math.PI;
-		// do the bounce!
-		if(!(collider instanceof Powerup)) {
-			this.setCenterX((float) (this.getCenterX() + Math.cos(phi_relativ) * 20));
-			this.setCenterY((float) (this.getCenterY() - Math.sin(phi_relativ) * 20));
-		}
-		
-	if (collider instanceof Player || collider instanceof Powerup) {
+
+	// calculate relative angle between colliding parties
+	float phi_relativ = (float) (Math.atan2(this.getCenterY() - collider.getCenterY(),
+		collider.getCenterX() - this.getCenterX()));
+	// bounce off into the opposite direction exept when hitting the Ring
+	if (!(collider instanceof Ring))
+	    phi_relativ += Math.PI;
+	// do the bounce!
+	if (!(collider instanceof Powerup)) {
+	    this.setCenterX((float) (this.getCenterX() + Math.cos(phi_relativ) * 20));
+	    this.setCenterY((float) (this.getCenterY() - Math.sin(phi_relativ) * 20));
 	}
-	else{
-		if (this.collisionTimer <= 0) {
-	    this.setHp(this.getHp() - 1);
-	    this.collisionTimer = TIME_BETWEEN_COLLISIONS;
-		}
+
+	if (collider instanceof Player || collider instanceof Powerup) {
+	} else {
+	    if (this.collisionTimer <= 0) {
+		this.setHp(this.getHp() - 1);
+		this.collisionTimer = TIME_BETWEEN_COLLISIONS;
+	    }
 	}
 
 	return null;
     }
-    
+
     public void setCollisionTimer(float time) {
-    	this.collisionTimer = time;
+	this.collisionTimer = time;
     }
 
 }

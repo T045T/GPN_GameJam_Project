@@ -39,7 +39,7 @@ public class Core extends Entity {
 	    try {
 		float rndFireRate = (float) (Math.random() * 10000f);
 		this.spawners.add(new ObstacleSpawner(this.getCenterX() + this.getRadius(), this.getCenterY(), 0.05f,
-			rndFireRate, rndFireRate * 10));
+			rndFireRate * 1.3f, rndFireRate * 10));
 	    } catch (SlickException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
