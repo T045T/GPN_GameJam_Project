@@ -44,16 +44,13 @@ public class ObstacleSpawner extends PhysicalEntity {
 		if (Math.random() < 0.2) {
 		    double random = Math.random();
 		    if (random < 0.5) {
-			System.out.println("invincible-powerup spawned");
 			spawnedObstacles.add(new PowerupInvincible(this.getCenterX(), this.getCenterY(), 1,
 				GlobalSettings.getGlobalSpeed()));
-		    } else if (random >=0.5) {
-			System.out.println("health-powerup spawned");
+		    } else if (random >= 0.5) {
 			spawnedObstacles.add(new PowerupHealth(this.getCenterX(), this.getCenterY(), 1, GlobalSettings
 				.getGlobalSpeed()));
 		    }
 		} else {
-		    System.out.println("obstacle spawned");
 		    spawnedObstacles.add(new Obstacle(this.getCenterX(), this.getCenterY(), 1, this.getSpeed()));
 		}
 	    } catch (SlickException e) {
