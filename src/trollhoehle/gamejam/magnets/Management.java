@@ -97,7 +97,7 @@ public class Management extends BasicGame {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-	//GlobalSettings.getNyanLoop().playAsMusic(1.0f, 1.0f, true);
+	GlobalSettings.getNyanLoop().playAsMusic(1.0f, 1.0f, true);
     }
     
     
