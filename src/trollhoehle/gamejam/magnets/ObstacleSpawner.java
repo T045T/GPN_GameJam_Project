@@ -5,8 +5,7 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 /**
- * This class is used to spawn Obstacles. It is a PhysicalEntity since it move
- * in circular motions around the core.
+ * This class is used to spawn Obstacles. It is a PhysicalEntity since it move in circular motions around the core.
  * 
  * @author Cakemix
  */
@@ -21,7 +20,7 @@ public class ObstacleSpawner extends PhysicalEntity {
 	protected float timeToLive;
 
 	public ObstacleSpawner(float posX, float posY, float startSpeed, float timeBetweenSpawns, float timeToLive)
-	throws SlickException {
+			throws SlickException {
 		super(posX, posY, new Rectangle(posX, posY, 10, 5), new Image("res/images/gun.png"), -100, startSpeed, 0.08f);
 		this.timeBetweenSpawns = timeBetweenSpawns;
 		this.timeToLive = timeToLive;
@@ -44,9 +43,15 @@ public class ObstacleSpawner extends PhysicalEntity {
 			spawnedObstacles = new Obstacle[1];
 			try {
 				if (Math.random() < 0.1) {
-					System.out.println("invincible-powerup spawned");
-					spawnedObstacles[0] = new PowerupInvincible(this.getCenterX(), this.getCenterY(), 1,
-							OBSTACLE_SPEED, new Image("res/images/lulz.png"));
+					if (Math.random() < 0.5) {
+						System.out.println("invincible-powerup spawned");
+						spawnedObstacles[0] = new PowerupInvincible(this.getCenterX(), this.getCenterY(), 1,
+								OBSTACLE_SPEED);
+					} else {
+						System.out.println("health-powerup spawned");
+						spawnedObstacles[0] = new PowerupHealth(this.getCenterX(), this.getCenterY(), 1,
+								OBSTACLE_SPEED);
+					}
 				} else {
 					System.out.println("obstacle spawned");
 					spawnedObstacles[0] = new Obstacle(this.getCenterX(), this.getCenterY(), 1, OBSTACLE_SPEED, 0.08f);

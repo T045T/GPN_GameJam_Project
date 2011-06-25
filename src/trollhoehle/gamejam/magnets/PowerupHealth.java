@@ -11,6 +11,11 @@ public class PowerupHealth extends Powerup {
 		// TODO Auto-generated constructor stub
 	}
 	
+	public PowerupHealth(float posX, float posY, int hp, float startSpeed) throws SlickException {
+		super(posX, posY, hp, startSpeed,new Image("res/images/lol.png"));
+		// TODO Auto-generated constructor stub
+	}
+	
 	public Obstacle[] collision(Entity collider) {
 		if (collider instanceof Player || collider instanceof Ring) {
 			if(collider instanceof Player) {
