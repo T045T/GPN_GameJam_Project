@@ -1,5 +1,7 @@
 package trollhoehle.gamejam.magnets;
 
+import java.util.ArrayList;
+
 import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Shape;
 
@@ -13,140 +15,146 @@ import org.newdawn.slick.geom.Shape;
  */
 public abstract class Entity {
 
-	private Image img;
-	private Shape shape;
-	protected float speedMultiplier;
+    private Image img;
+    private Shape shape;
+    protected float speedMultiplier;
 
-	/**
-	 * 
-	 * @param posX
-	 *            Upper-left-x-pos
-	 * @param posY
-	 *            Upper-left-y-pos
-	 * @param shape
-	 * @param img
-	 */
-	public Entity(float posX, float posY, Shape shape, Image img, float speedMultiplier) {
-		this.shape = shape;
-		this.img = img;
-		this.shape.setCenterX(posX);
-		this.shape.setCenterY(posY);
-		this.speedMultiplier = speedMultiplier;
-	}
+    /**
+     * 
+     * @param posX
+     *            Upper-left-x-pos
+     * @param posY
+     *            Upper-left-y-pos
+     * @param shape
+     * @param img
+     */
+    public Entity(float posX, float posY, Shape shape, Image img, float speedMultiplier) {
+	this.shape = shape;
+	this.img = img;
+	this.shape.setCenterX(posX);
+	this.shape.setCenterY(posY);
+	this.speedMultiplier = speedMultiplier;
+    }
 
-	public Image getImg() {
-		return img;
-	}
+    /**
+     * Draws this Entitie's {@link Image} at this Entitie's position.
+     */
+    public void draw() {
+	this.img.draw(this.getX(), this.getY(), this.shape.getHeight() / (float) this.img.getHeight());
+    }
 
-	public Shape getShape() {
-		return shape;
-	}
+    public Image getImg() {
+	return img;
+    }
 
-	public float getCenterX() {
-		return this.shape.getCenterX();
-	}
+    public Shape getShape() {
+	return shape;
+    }
 
-	public float getCenterY() {
-		return this.shape.getCenterY();
-	}
+    public float getCenterX() {
+	return this.shape.getCenterX();
+    }
 
-	public float getX() {
-		return this.shape.getX();
-	}
+    public float getCenterY() {
+	return this.shape.getCenterY();
+    }
 
-	public float getY() {
-		return this.shape.getY();
-	}
+    public float getX() {
+	return this.shape.getX();
+    }
 
-	public float getSpeedMultiplier() {
-		return this.speedMultiplier;
-	}
+    public float getY() {
+	return this.shape.getY();
+    }
 
-	public void setSpeedMultiplier(float speedMultiplier) {
-		this.speedMultiplier = speedMultiplier;
-	}
+    public float getSpeedMultiplier() {
+	return this.speedMultiplier;
+    }
 
-	/**
-	 * Returns the radius of the circle completely encloses this Entity's
-	 * Shape.
-	 * 
-	 * @return
-	 */
-	public float getRadius() {
-		return this.shape.getBoundingCircleRadius();
-	}
+    public void setSpeedMultiplier(float speedMultiplier) {
+	this.speedMultiplier = speedMultiplier;
+    }
 
-	public void setImg(Image img) {
-		this.img = img;
-	}
+    /**
+     * Returns the radius of the circle completely encloses this Entity's Shape.
+     * 
+     * @return
+     */
+    public float getRadius() {
+	return this.shape.getBoundingCircleRadius();
+    }
 
-	public void setShape(Shape shape) {
-		this.shape = shape;
-	}
+    public void setImg(Image img) {
+	this.img = img;
+    }
 
-	/**
-	 * Sets this Entity's center-x-position.
-	 * 
-	 * @param x
-	 *            The given value.
-	 */
-	public void setCenterX(float x) {
-		this.shape.setCenterX(x);
-	}
+    public void setShape(Shape shape) {
+	this.shape = shape;
+    }
 
-	/**
-	 * Sets this Entity's center-y-position.
-	 * 
-	 * @param y
-	 *            The given value.
-	 */
-	public void setCenterY(float y) {
-		this.shape.setCenterY(y);
-	}
+    /**
+     * Sets this Entity's center-x-position.
+     * 
+     * @param x
+     *            The given value.
+     */
+    public void setCenterX(float x) {
+	this.shape.setCenterX(x);
+    }
 
-	/**
-	 * Sets this Entity's upper-left-x-position
-	 * 
-	 * @param x
-	 */
-	public void setX(float x) {
-		this.shape.setX(x);
-	}
+    /**
+     * Sets this Entity's center-y-position.
+     * 
+     * @param y
+     *            The given value.
+     */
+    public void setCenterY(float y) {
+	this.shape.setCenterY(y);
+    }
 
-	/**
-	 * Sets this Entity's upper-left-y-position
-	 * 
-	 * @param y
-	 */
-	public void setY(float y) {
-		this.shape.setY(y);
-	}
+    /**
+     * Sets this Entity's upper-left-x-position
+     * 
+     * @param x
+     */
+    public void setX(float x) {
+	this.shape.setX(x);
+    }
 
-	/**
-	 * This method calculates everything which needs to be calculated every
-	 * frame.
-	 * 
-	 * @param timePerFrame
-	 *            The time between the next and the last frame.
-	 * @param toCenterX
-	 *            The absolute distance to the center of the screen on the
-	 *            x-axis.
-	 * @param toCenterY
-	 *            The absolute distance to the center of the screen on the
-	 *            y-axis.
-	 * @param attract
-	 *            The strength with which the core attracts objects.
-	 * @return An array of Obstacles which has been spawned in this Entity's
-	 *         update-method.
-	 */
-	public abstract Obstacle[] update(float timePerFrame, float toCenterX, float toCenterY, float attract);
+    /**
+     * Sets this Entity's upper-left-y-position
+     * 
+     * @param y
+     */
+    public void setY(float y) {
+	this.shape.setY(y);
+    }
 
-	/**
-	 * This method is called when this entity collides with another Entity.
-	 * 
-	 * @param collider
-	 *            The "other" Entity.
-	 * @return
-	 */
-	public abstract Obstacle[] collision(Entity collider);
+    /**
+     * This method calculates everything which needs to be calculated every
+     * frame.
+     * 
+     * @param timePerFrame
+     *            The time between the next and the last frame.
+     * @param toCenterX
+     *            The absolute distance to the center of the screen on the
+     *            x-axis.
+     * @param toCenterY
+     *            The absolute distance to the center of the screen on the
+     *            y-axis.
+     * @param attract
+     *            The strength with which the core attracts objects.
+     * @return An array of Obstacles which has been spawned in this Entity's
+     *         update-method.
+     */
+    public abstract ArrayList<Obstacle> update(float timePerFrame, float toCenterX, float toCenterY, float attract);
+
+    /**
+     * This method is called when this entity collides with another Entity.
+     * 
+     * @param collider
+     *            The "other" Entity.
+     * @return
+     */
+    public abstract Obstacle[] collision(Entity collider);
 }

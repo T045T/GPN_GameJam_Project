@@ -46,31 +46,15 @@ public class Management extends BasicGame {
 
     public void render(GameContainer gc, Graphics arg1) throws SlickException {
 	for (Entity e : this.entities) {
-	    e.getImg().draw(e.getX(), e.getY(),
-		    (float) ((float) e.getShape().getWidth() / (float) e.getImg().getWidth()));
+	    e.draw();
 	}
 
-	ring.getImg().draw(0, 0, (float) ((float) gc.getHeight() / (float) ring.getImg().getHeight()));
-	this.ring.getImg().setCenterOfRotation(gc.getWidth() / 2, gc.getHeight() / 2);
+	ring.draw();
 
-	core.getImg().draw(core.getX(), core.getY(),
-		(float) ((float) core.getShape().getWidth() / (float) core.getImg().getWidth()));
-
-	for (ObstacleSpawner os : this.core.getObstacleSpawner()) {
-	    os.getImg().draw(os.getX(), os.getY(),
-		    (float) ((float) os.getShape().getWidth() / (float) os.getImg().getWidth()));
-	}
+	core.draw();
 
 	for (Player p : this.players) {
-	    arg1.setColor(p.getColor());
-	    arg1.drawString("" + p.getHp(), p.getX(), p.getY() - 20);
-	    if (p.isInvincible()) {
-		p.getImg().draw(p.getX(), p.getY(), new Color(100, 100, 100));
-
-	    } else {
-		p.getImg().draw(p.getX(), p.getY());
-
-	    }
+	    p.draw(arg1);
 	}
 
     }
@@ -88,30 +72,14 @@ public class Management extends BasicGame {
     public void update(GameContainer gc, int delta) throws SlickException {
 	Input input = gc.getInput();
 
-	Obstacle[] result;
+	ArrayList<Obstacle> newObstacles = new ArrayList<Obstacle>();
 
 	// RING
-	// this.ring.setSpeedMultiplier(currentSpeed);
-	this.ring.getImg().rotate(-0.02f * delta - currentSpeed);
+	this.ring.setSpeedMultiplier(currentSpeed);
+	newObstacles.addAll(this.ring.update(delta, gc.getWidth() / 2, gc.getHeight() / 2, 0.08f));
 
-	this.ring.update(delta, gc.getWidth() / 2, gc.getHeight() / 2, 0.08f);
-
-	this.core.update(delta, gc.getWidth() / 2, gc.getHeight() / 2, 0.08f);
-
-	// OBSTACLE SPAWNER
-	for (ObstacleSpawner os : this.core.getObstacleSpawner()) {
-	    result = os.update(delta, gc.getWidth() / 2, gc.getHeight() / 2, 0.08f);
-
-	    // Change speed
-	    os.setSpeedMultiplier(currentSpeed);
-
-	    if (result != null) {
-		for (Entity er : result) {
-		    this.entities.add(er);
-		}
-
-	    }
-	}
+	// CORE
+	newObstacles.addAll(this.core.update(delta, gc.getWidth() / 2, gc.getHeight() / 2, 0.08f));
 
 	// PLAYERS
 	for (int i = 0; i < this.players.size(); i++) {
@@ -133,7 +101,7 @@ public class Management extends BasicGame {
 	    }
 
 	    // NEW POSITION
-	    p.update(delta, gc.getWidth() / 2, gc.getHeight() / 2, attract);
+	    newObstacles.addAll(p.update(delta, gc.getWidth() / 2, gc.getHeight() / 2, attract));
 
 	    // COLLISION
 	    for (int j = i + 1; j < this.players.size(); j++) {
@@ -173,10 +141,10 @@ public class Management extends BasicGame {
 	    Entity e = this.entities.get(i);
 
 	    // NEW POSITION
-	    result = e.update(delta, gc.getWidth() / 2, gc.getHeight() / 2, 0);
+	    newObstacles = e.update(delta, gc.getWidth() / 2, gc.getHeight() / 2, 0);
 
-	    if (result != null) {
-		for (Entity newE : result) {
+	    if (newObstacles != null) {
+		for (Entity newE : newObstacles) {
 		    this.entities.add(newE);
 		}
 	    }
@@ -223,6 +191,9 @@ public class Management extends BasicGame {
 	}
 
 	// TODO: particles(?)
+
+	// ADD ALL NEW STUFF TO ENTITIES
+	entities.addAll(newObstacles);
     }
 
 }

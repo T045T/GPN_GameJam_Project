@@ -1,5 +1,7 @@
 package trollhoehle.gamejam.magnets;
 
+import java.util.ArrayList;
+
 import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Shape;
 
@@ -63,11 +65,11 @@ public abstract class PhysicalEntity extends Entity {
 		this.speed = speed;
 	}
 
-	public Obstacle[] update(float timePerFrame, float toCenterX, float toCenterY, float attract) {
+	public ArrayList<Obstacle> update(float timePerFrame, float toCenterX, float toCenterY, float attract) {
 		// calculate new position
 		this.calculateCircularMovement(timePerFrame, toCenterX, toCenterY, attract);
 
-		return null;
+		return new ArrayList<Obstacle>();
 	}
 
 	/**
