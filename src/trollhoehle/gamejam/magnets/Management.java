@@ -204,19 +204,19 @@ public class Management extends BasicGame {
 
 	// KILL DEAD PHYSICAL ENTITIES
 	for (int i = 0; i < this.players.size(); i++) {
-	    if (this.players.get(i).getHp() == 0) {
+	    if (this.players.get(i).getHp() <= 0 && this.players.get(i).getHp() != -100) {
 		this.players.remove(i);
 	    }
 	}
 	for (int i = 0; i < this.entities.size(); i++) {
 	    if (this.entities.get(i) instanceof PhysicalEntity) {
-		if (((PhysicalEntity) this.entities.get(i)).getHp() == 0) {
+		if (((PhysicalEntity) this.entities.get(i)).getHp() <= 0 && ((PhysicalEntity) this.entities.get(i)).getHp() != -100) {
 		    this.entities.remove(i);
 		}
 	    }
 	}
 	for (int i = 0; i < this.core.getObstacleSpawner().size(); i++) {
-	    if (this.core.getObstacleSpawner().get(i).getHp() == 0) {
+	    if (this.core.getObstacleSpawner().get(i).getHp() <= 0 && this.core.getObstacleSpawner().get(i).getHp() != -100) {
 		this.core.getObstacleSpawner().remove(i);
 	    }
 	}
