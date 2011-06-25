@@ -2,7 +2,6 @@ package trollhoehle.gamejam.magnets;
 
 import trollhoehle.gamejam.magnets.Player;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,8 +14,6 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.openal.Audio;
-import org.newdawn.slick.openal.AudioLoader;
 
 public class Management extends BasicGame {
 
@@ -100,7 +97,7 @@ public class Management extends BasicGame {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-	GlobalSettings.getNyanLoop().playAsMusic(1.0f, 1.0f, true);
+	//GlobalSettings.getNyanLoop().playAsMusic(1.0f, 1.0f, true);
     }
     
     
