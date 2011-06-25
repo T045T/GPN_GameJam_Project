@@ -51,8 +51,6 @@ public abstract class Entity {
 		this.shape = this.getShape().transform(Transform.createScaleTransform(tempScale, tempScale));
 		this.shape.setX(posX - (this.shape.getWidth() / 2));
 		this.shape.setY(posY - (this.shape.getHeight() / 2));
-
-		this.setImg(this.getImg().getScaledCopy(tempScale));
 		this.scale = scale;
 	}
 

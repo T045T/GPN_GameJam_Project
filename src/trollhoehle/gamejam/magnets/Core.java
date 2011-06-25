@@ -17,6 +17,7 @@ import org.newdawn.slick.geom.Circle;
 public class Core extends Entity {
 
     private static final float OBSTACLE_SPAWNER_SPAWN_PROBABILITY = 20000f;
+    private boolean growing = true;
     private ArrayList<ObstacleSpawner> spawners;
 
     public Core(float screenWidth, float screenHeight) throws SlickException {

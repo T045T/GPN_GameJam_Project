@@ -13,10 +13,12 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.particles.ParticleSystem;
+import org.newdawn.slick.particles.ParticleEmitter;
 
 public class Management extends BasicGame {
 
-    /**
+    /*
      * All Entities but the Players and the ring
      */
     private ArrayList<Entity> entities;
@@ -24,6 +26,8 @@ public class Management extends BasicGame {
     private Ring ring;
     private ArrayList<Player> players;
     private float currentSpeed = 0.2f;
+    private ParticleSystem system;
+    private boolean drawParticles = false;
     
 
     public Management() {
@@ -78,16 +82,20 @@ public class Management extends BasicGame {
 	for (Player p : this.players) {
 	    p.draw(arg1);
 	}
+	if (drawParticles) {
+		system.render();
+	}
 
     }
 
     @Override
     public void init(GameContainer gc) throws SlickException {
 
+    this.system = new ParticleSystem(new Image("res/images/particleTest.png"));
 	this.ring = new Ring(gc.getWidth() / 2, gc.getHeight() / 2, gc.getWidth() / 2);
 	this.core = new Core(gc.getWidth(), gc.getHeight());
 
-	gc.getInput().addKeyListener(new MagnetKeyListener(this.players));
+	gc.getInput().addKeyListener(new MagnetKeyListener(this.players, this.system, this.core));
 	
 	try {
 		GlobalSettings.initSound();
@@ -124,10 +132,12 @@ public class Management extends BasicGame {
 	    // KEY STROKES:
 	    if (input.isKeyDown(p.getButton())) {
 	    attract = 2 * currentSpeed; // otherwise it would become impossible to get closer to the core if currentSpeed goes above 0.3
+	    drawParticles = true;
 		p.setImg(new Image("res/images/magnet_active.png"));
 		// TODO: Particles!
 	    } else {
 		p.setImg(new Image("res/images/magnet_inactive.png"));
+		drawParticles = false;
 		// TODO: Particles!
 	    }
 
