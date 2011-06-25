@@ -97,8 +97,11 @@ public abstract class PhysicalEntity extends Entity {
 		phi += speed * timePerFrame / radius;
 	}
 
-	// constantly increase radius, except attract != 0
-	radius += (this.speedMultiplier - attract) * timePerFrame;
+	// only if NOT an ObstacleSpawner
+	if (!(this instanceof ObstacleSpawner)) {
+		// constantly increase radius, except attract != 0
+		radius += (this.speedMultiplier - attract) * timePerFrame;
+	}
 
 	// back from Radial to Cartesian and save
 

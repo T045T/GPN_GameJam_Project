@@ -85,8 +85,10 @@ public class Player extends PhysicalEntity {
 		if(!(collider instanceof Ring))
 			phi_relativ += Math.PI;
 		// do the bounce!
-		this.setCenterX((float) (this.getCenterX() + Math.cos(phi_relativ) * 20));
-		this.setCenterY((float) (this.getCenterY() - Math.sin(phi_relativ) * 20));
+		if(!(collider instanceof Powerup)) {
+			this.setCenterX((float) (this.getCenterX() + Math.cos(phi_relativ) * 20));
+			this.setCenterY((float) (this.getCenterY() - Math.sin(phi_relativ) * 20));
+		}
 		
 	if (collider instanceof Player || collider instanceof Powerup) {
 	}
