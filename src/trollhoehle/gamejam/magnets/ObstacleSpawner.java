@@ -14,7 +14,7 @@ import org.newdawn.slick.SlickException;
  */
 public class ObstacleSpawner extends PhysicalEntity {
 
-    /**
+    /*
      * ms-value.
      */
     protected float timeBetweenSpawns;
@@ -32,6 +32,12 @@ public class ObstacleSpawner extends PhysicalEntity {
 	super.calculateCircularMovement(timePerFrame, toCenterX, toCenterY, this.speedMultiplier);
     }
 
+    public void setRadius(float radius) {
+    	// Hardcoded for now...
+    	this.setCenterX((float) (this.getCenterX() - 360 + Math.cos(this.getPolarPhi()) * radius));
+    	this.setCenterY((float) (this.getCenterY() - 360 - Math.sin(this.getPolarPhi()) * radius));
+    }
+    
     public ArrayList<Obstacle> update(float timePerFrame, float toCenterX, float toCenterY, float attract) {
 	ArrayList<Obstacle> spawnedObstacles = super.update(timePerFrame, toCenterX, toCenterY, attract);
 
