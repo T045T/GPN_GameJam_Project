@@ -27,13 +27,7 @@ public class Management extends BasicGame {
     private Core core;
     private Ring ring;
     private ArrayList<Player> players;
-    private Audio nyanLoop;
-    private Audio pa_health;
-    private Audio pa_speedup;
-    private Audio pa_slowdown;
-    private Audio ping;
-    private Audio pa_invincible;
-    private Audio explosion;
+    
 
     public Management() {
 	super("Fucking magnets - How do they work?");
@@ -97,21 +91,19 @@ public class Management extends BasicGame {
 
 	gc.getInput().addKeyListener(new MagnetKeyListener(this.players));
 	
-	this.initSound();
+	try {
+		GlobalSettings.initSound();
+	} catch (FileNotFoundException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	//GlobalSettings.getNyanLoop().playAsMusic(1.0f, 1.0f, true);
     }
     
-    private void initSound() {
-    	try {
-			this.nyanLoop = AudioLoader.getAudio("WAV", new FileInputStream("res/sound/nyanlooped.wav"));
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		this.nyanLoop.playAsMusic(1.0f, 1.0f, true);
-    }
+    
 
     @Override
     public void update(GameContainer gc, int delta) throws SlickException {
@@ -150,6 +142,7 @@ public class Management extends BasicGame {
 		if (p.getShape().intersects(pc.getShape())) {
 		    p.collision(pc);
 		    pc.collision(p);
+		    GlobalSettings.getPing().playAsSoundEffect(1.0f, 1.0f, false);
 		}
 
 	    }
@@ -160,17 +153,20 @@ public class Management extends BasicGame {
 		if (p.getShape().intersects(ec.getShape())) {
 		    p.collision(ec);
 		    ec.collision(p);
+		    GlobalSettings.getPing().playAsSoundEffect(1.0f, 1.0f, false);
 		}
 	    }
 
 	    if (!p.getShape().intersects(this.ring.getShape())) {
 		p.collision(this.ring);
 		this.ring.collision(p);
+		GlobalSettings.getPing().playAsSoundEffect(1.0f, 1.0f, false);
 	    }
 
 	    if (p.getShape().intersects(this.core.getShape())) {
 		p.collision(this.core);
 		this.core.collision(p);
+		GlobalSettings.getPing().playAsSoundEffect(1.0f, 1.0f, false);
 	    }
 	}
 
@@ -210,6 +206,7 @@ public class Management extends BasicGame {
 	// KILL DEAD PHYSICAL ENTITIES
 	for (int i = 0; i < this.players.size(); i++) {
 	    if (this.players.get(i).getHp() <= 0 && this.players.get(i).getHp() != -100) {
+	    GlobalSettings.getExplosion().playAsSoundEffect(1.0f, 1.0f, false);
 		this.players.remove(i);
 	    }
 	}
