@@ -174,7 +174,7 @@ public class Management extends BasicGame {
 	    Entity e = this.entities.get(i);
 
 	    // NEW POSITION
-	    newObstacles = e.update(delta, gc.getWidth() / 2, gc.getHeight() / 2, 0);
+	    newObstacles.addAll(e.update(delta, gc.getWidth() / 2, gc.getHeight() / 2, 0));
 
 	    // COLLISION
 	    for (int j = i + 1; j < this.entities.size(); j++) {
