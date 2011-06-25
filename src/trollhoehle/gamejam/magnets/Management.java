@@ -83,7 +83,6 @@ public class Management extends BasicGame {
 	for (Player p : this.players) {
 	    p.draw(arg1);
 	}
-	System.out.println(drawParticles);
 	if (drawParticles) {
 		system.render();
 	}
