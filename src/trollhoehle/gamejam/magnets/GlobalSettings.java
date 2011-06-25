@@ -28,15 +28,15 @@ public abstract class GlobalSettings {
     public static void setManagement(Management pManagement) {
 	management = pManagement;
     }
-    
+
     public static void initSound() throws FileNotFoundException, IOException {
-		nyanLoop = AudioLoader.getAudio("WAV", new FileInputStream("res/sound/nyanlooped.wav"));
-		pa_health = AudioLoader.getAudio("WAV", new FileInputStream("res/sound/health.wav"));
-		pa_invincible = AudioLoader.getAudio("WAV", new FileInputStream("res/sound/invincible.wav"));
-		pa_slowdown = AudioLoader.getAudio("WAV", new FileInputStream("res/sound/slowdown.wav"));
-		pa_speedup = AudioLoader.getAudio("WAV", new FileInputStream("res/sound/speedup.wav"));
-		explosion = AudioLoader.getAudio("WAV", new FileInputStream("res/sound/explosion.wav"));
-		ping = AudioLoader.getAudio("WAV", new FileInputStream("res/sound/ping.wav"));
+	nyanLoop = AudioLoader.getAudio("WAV", new FileInputStream("res/sound/nyanlooped.wav"));
+	pa_health = AudioLoader.getAudio("WAV", new FileInputStream("res/sound/health.wav"));
+	pa_invincible = AudioLoader.getAudio("WAV", new FileInputStream("res/sound/invincible.wav"));
+	pa_slowdown = AudioLoader.getAudio("WAV", new FileInputStream("res/sound/slowdown.wav"));
+	pa_speedup = AudioLoader.getAudio("WAV", new FileInputStream("res/sound/speedup.wav"));
+	explosion = AudioLoader.getAudio("WAV", new FileInputStream("res/sound/explosion.wav"));
+	ping = AudioLoader.getAudio("WAV", new FileInputStream("res/sound/ping.wav"));
     }
 
     public static float getGlobalSpeed() {
@@ -56,32 +56,32 @@ public abstract class GlobalSettings {
 	GlobalSettings.healthPerPlayer = healthPerPlayer;
     }
 
-	public static Audio getNyanLoop() {
-		return nyanLoop;
-	}
+    public static Audio getNyanLoop() {
+	return nyanLoop;
+    }
 
-	public static Audio getPa_health() {
-		return pa_health;
-	}
+    public static Audio getPa_health() {
+	return pa_health;
+    }
 
-	public static Audio getPa_speedup() {
-		return pa_speedup;
-	}
+    public static Audio getPa_speedup() {
+	return pa_speedup;
+    }
 
-	public static Audio getPa_slowdown() {
-		return pa_slowdown;
-	}
+    public static Audio getPa_slowdown() {
+	return pa_slowdown;
+    }
 
-	public static Audio getPing() {
-		return ping;
-	}
+    public static Audio getPing() {
+	return ping;
+    }
 
-	public static Audio getPa_invincible() {
-		return pa_invincible;
-	}
+    public static Audio getPa_invincible() {
+	return pa_invincible;
+    }
 
-	public static Audio getExplosion() {
-		return explosion;
-	}
+    public static Audio getExplosion() {
+	return explosion;
+    }
 
 }

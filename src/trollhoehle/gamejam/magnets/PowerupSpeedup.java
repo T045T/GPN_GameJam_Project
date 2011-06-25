@@ -19,7 +19,7 @@ public class PowerupSpeedup extends Powerup {
 		if (collider instanceof Player || collider instanceof Ring) {
 			if(collider instanceof Player) {
 				//((Player) collider).setCollisionTimer(1500);
-				collider.setSpeedMultiplier(collider.getSpeedMultiplier()+collider.getSpeedMultiplier()*0.5f);
+				collider.setSpeedMultiplier(collider.getSpeedMultiplier()+1.5f);
 				GlobalSettings.getPa_speedup().playAsSoundEffect(1.0f, 1.0f, false);
 			}
 		    super.collision(collider);

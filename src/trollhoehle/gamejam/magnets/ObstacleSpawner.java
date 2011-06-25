@@ -41,24 +41,16 @@ public class ObstacleSpawner extends PhysicalEntity {
 	if (timeFromLastSpawn >= timeBetweenSpawns) {
 	    timeFromLastSpawn = 0;
 	    try {
-		if (Math.random() < 0.1) {
+		if (Math.random() < 0.2) {
 		    double random = Math.random();
-		    if (random < 0.25) {
+		    if (random < 0.5) {
 			System.out.println("invincible-powerup spawned");
 			spawnedObstacles.add(new PowerupInvincible(this.getCenterX(), this.getCenterY(), 1,
 				GlobalSettings.getGlobalSpeed()));
-		    } else if (random >= 0.25 && random < 0.5) {
+		    } else if (random >=0.5) {
 			System.out.println("health-powerup spawned");
 			spawnedObstacles.add(new PowerupHealth(this.getCenterX(), this.getCenterY(), 1, GlobalSettings
 				.getGlobalSpeed()));
-		    } else if (random >= 0.5 && random < 0.75) {
-			System.out.println("speedup-powerup spawned");
-			spawnedObstacles.add(new PowerupSpeedup(this.getCenterX(), this.getCenterY(), 1, GlobalSettings
-				.getGlobalSpeed()));
-		    } else if (random >= 0.75 && random < 1) {
-			System.out.println("slowdown-powerup spawned");
-			spawnedObstacles.add(new PowerupSlowdown(this.getCenterX(), this.getCenterY(), 1,
-				GlobalSettings.getGlobalSpeed()));
 		    }
 		} else {
 		    System.out.println("obstacle spawned");
