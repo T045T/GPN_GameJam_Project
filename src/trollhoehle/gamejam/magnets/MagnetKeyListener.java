@@ -64,7 +64,7 @@ public class MagnetKeyListener implements KeyListener {
 
 		    try {
 		    	Player tempPlayer = new Player(200, 200, new Circle(200, 200, 20), new Image(
-				"res/images/magnet_inactive.png"), 0.15f, "Trollspieler " + arg1, arg0, 0.08f);
+				"res/images/magnet_inactive.png"), 0.25f, "Trollspieler " + arg1, arg0, 0.15f);
 		    	
 				system.addEmitter(new MagnetoParticleEmitter(tempPlayer, core));
 				players.add(tempPlayer);

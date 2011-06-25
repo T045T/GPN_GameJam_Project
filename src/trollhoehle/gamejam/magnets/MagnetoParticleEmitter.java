@@ -12,7 +12,7 @@ public class MagnetoParticleEmitter implements ParticleEmitter {
 	private int y;
 	private int particleRate = 30;
 	private int timer;
-	private float size = 6;
+	private float size = 15;
 	private float speed = 0.01f;
 	private Entity source;
 	private Entity target;
