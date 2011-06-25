@@ -61,7 +61,7 @@ public class MagnetKeyListener implements KeyListener {
 			this.players
 				.add(new Player(200, 200, new Circle(200, 200, 20), new Image(
 					"res/images/magnet_inactive.png"), LIFE_PER_PLAYER, 0.15f, "Trollspieler "
-					+ arg1, arg0));
+					+ arg1, arg0, 0.08f));
 		    } catch (SlickException e) {
 
 		    }

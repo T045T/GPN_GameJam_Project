@@ -20,8 +20,23 @@ public class ObstacleSpawner extends PhysicalEntity {
     private float timeFromLastSpawn;
 
     public ObstacleSpawner(float posX, float posY, float startSpeed, float timeBetweenSpawns) throws SlickException {
-	super(posX, posY, new Rectangle(posX, posY, 10, 5), new Image("res/images/gun.png"), -1, startSpeed);
+	super(posX, posY, new Rectangle(posX, posY, 10, 5), new Image("res/images/gun.png"), -1, startSpeed, 0.08f);
 	this.timeBetweenSpawns = timeBetweenSpawns;
+    }
+
+    protected void calculateCircularMovement(float timePerFrame, float toCenterX, float toCenterY) {
+
+	// from Cartesian to Radial
+	float phi = this.getPolarPhi();
+	float radius = this.getPolarRadius();
+
+	// calculate new values
+	phi += this.getSpeed() * timePerFrame / radius;
+
+	// back from Radial to Cartesian and save
+
+	this.setCenterX((float) (toCenterX + Math.cos(phi) * radius));
+	this.setCenterY((float) (toCenterY - Math.sin(phi) * radius));
     }
 
     public Obstacle[] update(float timePerFrame, float toCenterX, float toCenterY, float attract) {
@@ -36,7 +51,13 @@ public class ObstacleSpawner extends PhysicalEntity {
 	    timeFromLastSpawn = 0;
 	    spawnedObstacles = new Obstacle[1];
 	    try {
-		spawnedObstacles[0] = new Obstacle(this.getCenterX(), this.getCenterY(), 1, OBSTACLE_SPEED);
+		if (Math.random() > 0.2) {
+		    System.out.println("powerup spawned");
+		    spawnedObstacles[0] = new PowerupInvincible(this.getCenterX(), this.getCenterY(), 1, OBSTACLE_SPEED);
+		} else {
+		    System.out.println("obstacle spawned");
+		    spawnedObstacles[0] = new Obstacle(this.getCenterX(), this.getCenterY(), 1, OBSTACLE_SPEED, 0.08f);
+		}
 	    } catch (SlickException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
@@ -45,5 +66,4 @@ public class ObstacleSpawner extends PhysicalEntity {
 
 	return spawnedObstacles;
     }
-
 }
