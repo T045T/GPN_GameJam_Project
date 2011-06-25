@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Shape;
+import org.newdawn.slick.geom.Transform;
 
 /**
  * Basic class for everything that can be displayed. Has an {@link Image} which
@@ -17,6 +18,7 @@ public abstract class Entity {
 
     private Image img;
     private Shape shape;
+    private float scale;
     protected float speedMultiplier;
 
     /**
@@ -34,8 +36,36 @@ public abstract class Entity {
 	this.shape.setCenterX(posX);
 	this.shape.setCenterY(posY);
 	this.speedMultiplier = GlobalSettings.getGlobalSpeed();
+	this.scale = 1;
     }
 
+    /**
+	 * Scales the associated Shape and Image to the factor provided. BUGGY!!!
+	 * @param scale the factor to which you want to scale - 1.0 is the original size
+	 */
+	public void setScale(float scale) {
+		float tempScale = scale / this.scale;
+		System.out.println(tempScale);
+		float posX = this.getX();
+		float posY = this.getY();
+		this.shape = this.getShape().transform(Transform.createScaleTransform(tempScale, tempScale));
+		this.shape.setX(posX - (this.shape.getWidth() / 2));
+		this.shape.setY(posY - (this.shape.getHeight() / 2));
+
+		this.setImg(this.getImg().getScaledCopy(tempScale));
+		this.scale = scale;
+	}
+
+	/**
+	 * Returns the current scale of this Entity, based on the size it was
+	 * when it was created.
+	 * @return the current scale of this Entity, based on the size it was
+	 * when it was created.
+	 */
+	public float getScale() {
+		return this.scale;
+	}
+	
     /**
      * Draws this Entitie's {@link Image} at this Entitie's position.
      */

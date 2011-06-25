@@ -72,6 +72,27 @@ public class Core extends Entity {
 
     private void pulse(float timePerFrame) {
 	// TODO maaaaake iiiiit puuuuuuuulse! :O
+    	/*
+		float growthIncrement = 0.0004f;
+		float tempScale = this.getScale();
+		if (growing) {
+			tempScale += growthIncrement * timePerFrame;
+			if (tempScale > 1.2f) {
+				tempScale = 1.2f;
+				growing = false;
+			}
+		} else {
+			tempScale -= growthIncrement * timePerFrame;
+			if (tempScale < 0.8f) {
+				tempScale = 0.8f;
+				growing = true;
+			}
+		}
+		this.setScale(tempScale);
+		for (ObstacleSpawner o : this.spawners) {
+			o.setRadius(this.getRadius());
+		}
+		 */
 
     }
 

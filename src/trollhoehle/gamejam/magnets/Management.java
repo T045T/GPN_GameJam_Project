@@ -24,6 +24,7 @@ public class Management extends BasicGame {
     private Core core;
     private Ring ring;
     private ArrayList<Player> players;
+    private float currentSpeed = 0.2f;
     
 
     public Management() {
@@ -53,6 +54,7 @@ public class Management extends BasicGame {
      * @param currentSpeed
      */
     public void changeCurrentSpeed(float currentSpeed) {
+    this.currentSpeed = currentSpeed;
 	this.core.setSpeedMultiplier(currentSpeed);
 	this.ring.setSpeedMultiplier(currentSpeed);
 
@@ -122,7 +124,7 @@ public class Management extends BasicGame {
 
 	    // KEY STROKES:
 	    if (input.isKeyDown(p.getButton())) {
-		attract = 0.3f;
+	    attract = 2 * currentSpeed; // otherwise it would become impossible to get closer to the core if currentSpeed goes above 0.3
 		p.setImg(new Image("res/images/magnet_active.png"));
 		// TODO: Particles!
 	    } else {
